@@ -1,116 +1,60 @@
-This is a [Next.js](https://nextjs.org) + [Foundry](https://book.getfoundry.sh/) + [wagmi](https://wagmi.sh) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
+## Intro
+![Pixel Art](./pic.jpg)
 
-# Getting Started
+Come create an art piece on a 8x8 pixel map canvas for TrustX Istanbul! Register as an individual or team, then start placing pixel colours!
 
-Run `npm run dev` in your terminal, and then open [localhost:3000](http://localhost:3000) in your browser.
+## Sepolia Deployment
+`PixelsMap`: ``
+`X_IST`: ``
 
-Once the webpage has loaded, changes made to files inside the `src/` directory (e.g. `src/pages/index.tsx`) will automatically update the webpage.
+## Actions
+Note that actions generally require X_IST tokens.
 
-# Generating ABIs & React Hooks
+### 1. `register()`
+Registers caller, thereby receiving some pseudorandom amount of X_IST tokens. Mints equivalent amount to the `PixelsMap` contract.
 
-This project comes with `@wagmi/cli` built-in, which means you can generate wagmi-compatible (type safe) ABIs & React Hooks straight from the command line.
+### 2. `setTeamName()`
+Register team name. Immutable once set!
 
-To generate ABIs & Hooks, follow the steps below.
+### 3. `placePixels()`
+Initialise / replace pixel colour.
 
-## Install Foundry
+### 4. `placeMines()`
+Mining a pixel entitles the miner to receive 2x X_IST payable by the next caller on that pixel.
 
-First, you will need to install [Foundry](https://book.getfoundry.sh/getting-started/installation) in order to build your smart contracts. This can be done by running the following command:
+### 5. `resetPixels()`
+Resets and refunds a fixed amount of X_IST tokens.
 
-```
-curl -L https://foundry.paradigm.xyz | bash
-```
+### Note
+Miner payments and refunds are subject to the available funds held by the `PixelsMap` contract
 
-## Generate code
+## Colours
+16 colours in total for simplicity, stored as `uint8`. No validation on value stored, anything larger than 15 will default to white `#FFFFFF`.
 
-To generate ABIs & React Hooks from your Foundry project (in `./contracts`), you can run:
+| Value | Hexcode | Image |
+|:------|:---------|:-:|
+| `0` | `#FFFFFF` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/FFFFFF'/></a> |
+| `1` | `#F7E7CE` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/F7E7CE'/></a> |
+| `2` | `#E81416` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/E81416'/></a> |
+| `3` | `#7B3F00` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/7B3F00'/></a> |
+| `4` | `#FFA500` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/FFA500'/></a> |
+| `5` | `#F6C324` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/F6C324'/></a> |
+| `6` | `#FAEB36` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/FAEB36'/></a> |
+| `7` | `#79C314` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/79C314'/></a> |
+| `8` | `#228B22` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/228B22'/></a> |
+| `9` | `#0476D0` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/0476D0'/></a> |
+| `10` | `#191970` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/191970'/></a> |
+| `11` | `#4B369D` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/4B369D'/></a> |
+| `12` | `#70369D` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/70369D'/></a> |
+| `13` | `#FF69B4` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/FF69B4'/></a> |
+| `14` | `#36454F` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/36454F'/></a> |
+| `15` | `#000000` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/000000'/></a> |
 
-```
-npm run wagmi
-```
+## Award Categories
+- Banksy: Team that paints the most pixels
+- Justin Sun: Wallet holding the most X_IST tokens
+- Samczsun: Most creative exploit
 
-This will use the wagmi config (`wagmi.config.ts`) to generate a `src/generated.ts` file which will include your ABIs & Hooks that you can start using in your project.
+## Build Framework
+[Next.js](https://nextjs.org) + [Foundry](https://book.getfoundry.sh/) + [wagmi](https://wagmi.sh) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
 
-[Here is an example](./src/components/Counter.tsx) of where Hooks from the generated file is being used.
-
-# Deploying Contracts
-
-To deploy your contracts to a network, you can use Foundry's [Forge](https://book.getfoundry.sh/forge/) – a command-line tool to tests, build, and deploy your smart contracts.
-
-You can read a more in-depth guide on using Forge to deploy a smart contract [here](https://book.getfoundry.sh/forge/deploying), but we have included a simple script in the `package.json` to get you started.
-
-Below are the steps to deploying a smart contract to Ethereum Mainnet using Forge:
-
-## Install Foundry
-
-Make sure you have Foundry installed & set up.
-
-[See the above instructions](#install-foundry).
-
-## Set up environment
-
-You will first need to set up your `.env` to tell Forge where to deploy your contract.
-
-Go ahead and open up your `.env` file, and enter the following env vars:
-
-- `ETHERSCAN_API_KEY`: Your Etherscan API Key.
-- `FORGE_RPC_URL`: The RPC URL of the network to deploy to.
-- `FORGE_PRIVATE_KEY`: The private key of the wallet you want to deploy from.
-
-## Deploy contract
-
-You can now deploy your contract!
-
-```
-npm run deploy
-```
-
-# Developing with Anvil (Mainnet Fork)
-
-Let's combine the above sections and use Anvil alongside our development environment to use our contracts (`./contracts`) against an Ethereum Mainnet fork.
-
-## Install Foundry
-
-Make sure you have Foundry installed & set up.
-
-[See the above instructions](#install-foundry).
-
-## Start dev server
-
-Run the command:
-
-```
-npm run dev:foundry
-```
-
-This will:
-
-- Start a Next.js dev server,
-- Start the `@wagmi/cli` in [**watch mode**](https://wagmi.sh/cli/commands/generate#options) to listen to changes in our contracts, and instantly generate code,
-- Start an Anvil instance (Mainnet Fork) on an RPC URL.
-
-## Deploy our contract to Anvil
-
-Now that we have an Anvil instance up and running, let's deploy our smart contract to the Anvil network:
-
-```
-pnpm run deploy:anvil
-```
-
-## Start developing
-
-Now that your contract has been deployed to Anvil, you can start playing around with your contract straight from the web interface!
-
-Head to [localhost:3000](http://localhost:3000) in your browser, connect your wallet, and try increment the counter on the Foundry chain.
-
-> Tip: If you import an Anvil private key into your browser wallet (MetaMask, Coinbase Wallet, etc) – you will have 10,000 ETH to play with 😎. The private key is found in the terminal under "Private Keys" when you start up an Anvil instance with `npm run dev:foundry`.
-
-# Learn more
-
-To learn more about [Next.js](https://nextjs.org), [Foundry](https://book.getfoundry.sh/) or [wagmi](https://wagmi.sh), check out the following resources:
-
-- [Foundry Documentation](https://book.getfoundry.sh/) – learn more about the Foundry stack (Anvil, Forge, etc).
-- [wagmi Documentation](https://wagmi.sh) – learn about wagmi Hooks and API.
-- [wagmi Examples](https://wagmi.sh/examples/connect-wallet) – a suite of simple examples using wagmi.
-- [@wagmi/cli Documentation](https://wagmi.sh/cli) – learn more about the wagmi CLI.
-- [Next.js Documentation](https://nextjs.org/docs) learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.

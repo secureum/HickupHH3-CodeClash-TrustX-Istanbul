@@ -1,40 +1,27 @@
 import { configureChains, createConfig } from 'wagmi'
-import { foundry, goerli, mainnet } from 'wagmi/chains'
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-
+import { Chain } from 'wagmi/chains';
+import { foundry, sepolia } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [
-    mainnet,
-    ...(process.env.NODE_ENV === 'development' ? [goerli, foundry] : []),
-  ],
-  [
-    publicProvider(),
-  ],
-)
+const Buildbear = {
+    id: 11_613,
+    name: 'Buildbear Testnet',
+    network: 'Buildbear Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Ether',
+      symbol: 'ETH',
+    },
+    rpcUrls: {
+      public: { http: ['https://rpc.buildbear.io/eastern-qui-gon-jinn-fd75f9d5'] },
+      default: { http: ['https://rpc.buildbear.io/eastern-qui-gon-jinn-fd75f9d5'] },
+    },
+    blockExplorers: {
+      etherscan: { name: 'Buildbear', url: 'https://explorer.buildbear.io/eastern-qui-gon-jinn-fd75f9d5/' },
+      default: { name: 'Buildbear', url: 'https://explorer.buildbear.io/eastern-qui-gon-jinn-fd75f9d5/' },
+    }
+  } as const satisfies Chain;
 
-export const config = createConfig({
-  autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-    new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: 'wagmi',
-      },
-    }),
-    new InjectedConnector({
-      chains,
-      options: {
-        name: 'Injected',
-        shimDisconnect: true,
-      },
-    }),
-  ],
-  publicClient,
-  webSocketPublicClient,
-})
+const { publicClient } = configureChains([foundry], [publicProvider()]);
+
+export const config = createConfig({ publicClient })

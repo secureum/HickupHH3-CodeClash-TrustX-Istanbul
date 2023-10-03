@@ -3,6 +3,8 @@ src = 'contracts/src'
 test = 'contracts/test'
 out = 'contracts/out'
 libs = ['contracts/lib']
-solc = '0.8.13'
+solc = "0.8.19"
+optimizer = true
+optimizer_runs = 20_000
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
