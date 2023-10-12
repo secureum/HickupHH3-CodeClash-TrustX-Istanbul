@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "anvil": "source .env && anvil -m \"$ANVIL_MNEMONIC\" --fork-url $ANVIL_FORK_URL",
+    "anvil": "source .env && anvil -m \"$ANVIL_MNEMONIC\" --fork-url $ANVIL_FORK_URL --block-time 12",
     "build": "bun run wagmi && next build",
     "deploy:contract": "source .env && forge script contracts/script/Deploy.s.sol --rpc-url $FORGE_RPC_URL --broadcast --slow",
     "dev": "bun run wagmi && next dev",

@@ -4,7 +4,7 @@ import { foundry, sepolia } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 
 const Buildbear = {
-    id: 11_613,
+    id: 11_791,
     name: 'Buildbear Testnet',
     network: 'Buildbear Testnet',
     nativeCurrency: {
@@ -13,15 +13,16 @@ const Buildbear = {
       symbol: 'ETH',
     },
     rpcUrls: {
-      public: { http: ['https://rpc.buildbear.io/eastern-qui-gon-jinn-fd75f9d5'] },
-      default: { http: ['https://rpc.buildbear.io/eastern-qui-gon-jinn-fd75f9d5'] },
+      public: { http: ['https://rpc.buildbear.io/legitimate-obi-wan-kenobi-edefbce3'] },
+      default: { http: ['https://rpc.buildbear.io/legitimate-obi-wan-kenobi-edefbce3'] },
     },
     blockExplorers: {
-      etherscan: { name: 'Buildbear', url: 'https://explorer.buildbear.io/eastern-qui-gon-jinn-fd75f9d5/' },
-      default: { name: 'Buildbear', url: 'https://explorer.buildbear.io/eastern-qui-gon-jinn-fd75f9d5/' },
+      etherscan: { name: 'Buildbear', url: 'https://explorer.buildbear.io/legitimate-obi-wan-kenobi-edefbce3/' },
+      default: { name: 'Buildbear', url: 'https://explorer.buildbear.io/legitimate-obi-wan-kenobi-edefbce3/' },
     }
   } as const satisfies Chain;
 
 const { publicClient } = configureChains([foundry], [publicProvider()]);
+// const { publicClient } = configureChains([Buildbear], [publicProvider()]);
 
 export const config = createConfig({ publicClient })

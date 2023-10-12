@@ -4,11 +4,25 @@
 Come create an art piece on a 8x8 pixel map canvas for TrustX Istanbul! Register as an individual or team, then start placing pixel colours!
 
 ## Sepolia Deployment
-`PixelsMap`: ``
-`X_IST`: ``
+- `PixelsMap`: ``
+- `X_IST`: ``
 
-## Actions
-Note that actions generally require X_IST tokens.
+## Actions (Basic)
+
+### Registration
+First, join a team by calling `register(uint8 teamNumber)`. Largest team number is 100 (ie. max 100 teams). Then, set the team name if it isn't already set by other team members by calling `setTeamName(string teamName)`.
+
+### Placing Pixels
+Call `placePixels(uint8[] pixels, uint8[] colors, false, "")` where the pixels are the pixel(s) you'd like to draw on, with the corresponding color(s). Please refer to the [colour section](#Colors) for the available colors.
+
+### Placing Mines
+Mining a pixel entitles the miner to receive 2x X_IST payable by the next caller on that pixel. Call `placeMines(uint8[] pixels)` to place mines on specified pixels.
+
+### Resetting Pixels
+Resetting the pixel resets its data and refunds the caller, provided that you're the pixel's painter. This action is performed by calling `resetPixels()`.
+
+## Actions (Technical)
+Note that actions generally require X_IST tokens that's minted upon registration (subject to availability and rate limits).
 
 ### 1. `register()`
 Registers caller, thereby receiving some pseudorandom amount of X_IST tokens. Mints equivalent amount to the `PixelsMap` contract.

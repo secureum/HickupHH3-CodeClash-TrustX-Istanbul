@@ -10,11 +10,24 @@ interface IPixelsMap {
         uint8 color;    
     }
 
+    /*************
+    *** ERRORS ***
+    *************/
+    error AlreadyRegistered();
+    error GameEnded();
+    error CallFailed();
+    error MaxActionsPlayed();
+    error NotRegistered();
+    error BadTeamNumber();
+    error PixelNoChange(uint8 pixel);
+    error RegistrationsEnded();
+    error TeamNameAlreadySet();
+    error BadTeamName();
+
     /**************
     *** GETTERS ***
     **************/
     function addressRegistrar(address user) external view returns (uint8 teamNumber);
-    function teamNames(uint8 teamNumber) external view returns (string memory teamName); 
     function getTeamNumbers(address[] calldata users) external view returns (uint8[] memory teamNumbers);
     function getTeamNames(uint8[] calldata teamNumbers) external view returns (string[] memory teams);
 

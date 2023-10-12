@@ -300,9 +300,9 @@ function extractScorers(pixels: Pixel[], countType: number) {
     const sortedTeamCounts = teamCounts.sort((a, b) => b.count - a.count);
     // filter out team number -1 & null address
     // for painting, we also filter out team number 0 (initial state)
-    const filteredScorers = sortedTeamCounts.filter((team) => team.miner !== NULL_ADDRESS && team.number !== BigInt(-1));
+    const filteredScorers = sortedTeamCounts.filter((team) => team.miner !== NULL_ADDRESS && team.number != BigInt(-1));
     const scorers = countType === 0 ?
-        filteredScorers.filter((team) => team.number !== BigInt(0)) :
+        filteredScorers.filter((team) => team.number != BigInt(0)) :
         filteredScorers;
     return {scorers}
 }

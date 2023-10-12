@@ -14,25 +14,13 @@ contract PixelsMap is IPixelsMap {
     uint256 public constant REPLACEMENT_COST = 25e18;
     uint256 public constant REFUND_COST = 120e18;
     uint256 public constant MINE_EFFECT_MULTIPLIER = 2;
-    uint256 public constant MAX_TEAM_NAME_LENGTH = 16;
+    uint256 public constant MIN_TEAM_NAME_LENGTH = 3;
     X_IST public immutable XIST;
 
     mapping(uint8 => PixelData) internal pixelsMap;
     mapping(address => uint8) public addressRegistrar; 
-    mapping(uint8 => string) public teamNames;
+    mapping(uint8 => bytes32) internal teamNames;
     mapping(uint8 => uint8) public teamActionsCount;
-
-    // Errors
-    error AlreadyRegistered();
-    error GameEnded();
-    error CallFailed();
-    error MaxActionsPlayed();
-    error NotRegistered();
-    error BadTeamNumber();
-    error PixelNoChange(uint8 pixel);
-    error RegistrationsEnded();
-    error TeamNameAlreadySet();
-    error BadTeamName();
     
     constructor(X_IST _XIST) {
         XIST = _XIST;
@@ -68,10 +56,10 @@ contract PixelsMap is IPixelsMap {
     /// @dev can only be set once
     function setTeamName(string calldata teamName) external {
         uint8 teamNumber = getTeamNumber(msg.sender);
-        bytes memory storedTeamName = bytes(teamNames[teamNumber]);
-        if (keccak256(storedTeamName) != keccak256("")) revert TeamNameAlreadySet();
-        if (bytes(teamName).length > MAX_TEAM_NAME_LENGTH) revert BadTeamName();
-        teamNames[teamNumber] = teamName;
+        bytes32 storedTeamName = teamNames[teamNumber];
+        if (keccak256(abi.encodePacked(storedTeamName)) != keccak256(abi.encodePacked(bytes32(0)))) revert TeamNameAlreadySet();
+        if (bytes(teamName).length < MIN_TEAM_NAME_LENGTH) revert BadTeamName();
+        teamNames[teamNumber] = bytes32(bytes(teamName));
     }
 
     function placePixels(
@@ -109,10 +97,10 @@ contract PixelsMap is IPixelsMap {
 
     function _validateTeam(address user) internal view returns (uint8 teamNumber) {
         teamNumber = getTeamNumber(user);
-        bytes memory storedTeamName = bytes(teamNames[teamNumber]);
+        bytes32 storedTeamName = teamNames[teamNumber];
         if (
-            storedTeamName.length > MAX_TEAM_NAME_LENGTH ||
-            keccak256(storedTeamName) == keccak256("")
+            storedTeamName.length < MIN_TEAM_NAME_LENGTH ||
+            keccak256(abi.encodePacked(storedTeamName)) == keccak256("")
         ) revert BadTeamName();
     }
 
@@ -233,7 +221,7 @@ contract PixelsMap is IPixelsMap {
         uint256 arrLength = teamNumbers.length;
         teams = new string[](arrLength);
         for (uint256 i; i < arrLength; ++i) {
-            teams[i] = teamNames[teamNumbers[i]];
+            teams[i] = string(abi.encodePacked(teamNames[teamNumbers[i]]));
         }
     }
 
