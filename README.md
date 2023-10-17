@@ -10,7 +10,7 @@ Come create an art piece on a 8x8 pixel map canvas for TrustX Istanbul! Register
 ## Actions (Basic)
 
 ### Registration
-First, join a team by calling `register(uint8 teamNumber)`. Largest team number is 100 (ie. max 100 teams). Then, set the team name if it isn't already set by other team members by calling `setTeamName(string teamName)`.
+First, join a team by calling `register(uint8 teamNumber)`. Largest team number is 100 (ie. max 100 teams). Then, set the team name (minimum of 3 characters) if it isn't already set by other team members by calling `setTeamName(string teamName)`.
 
 ### Placing Pixels
 Call `placePixels(uint8[] pixels, uint8[] colors, false, "")` where the pixels are the pixel(s) you'd like to draw on, with the corresponding color(s). Please refer to the [colour section](#Colors) for the available colors.
@@ -28,7 +28,7 @@ Note that actions generally require X_IST tokens that's minted upon registration
 Registers caller, thereby receiving some pseudorandom amount of X_IST tokens. Mints equivalent amount to the `PixelsMap` contract.
 
 ### 2. `setTeamName()`
-Register team name. Immutable once set!
+Register team name. Minimally 3 characters, immutable once set!
 
 ### 3. `placePixels()`
 Initialise / replace pixel colour.
