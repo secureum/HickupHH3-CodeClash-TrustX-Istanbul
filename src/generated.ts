@@ -488,12 +488,26 @@ export const ierc20PermitABI = [
  *
  */
 export const iPixelsMapABI = [
+  { type: 'error', inputs: [], name: 'AlreadyRegistered' },
+  { type: 'error', inputs: [], name: 'BadTeamName' },
+  { type: 'error', inputs: [], name: 'BadTeamNumber' },
+  { type: 'error', inputs: [], name: 'CallFailed' },
+  { type: 'error', inputs: [], name: 'GameEnded' },
+  { type: 'error', inputs: [], name: 'MaxActionsPlayed' },
+  { type: 'error', inputs: [], name: 'NotRegistered' },
+  {
+    type: 'error',
+    inputs: [{ name: 'pixel', internalType: 'uint8', type: 'uint8' }],
+    name: 'PixelNoChange',
+  },
+  { type: 'error', inputs: [], name: 'RegistrationsEnded' },
+  { type: 'error', inputs: [], name: 'TeamNameAlreadySet' },
   {
     stateMutability: 'view',
     type: 'function',
     inputs: [{ name: 'user', internalType: 'address', type: 'address' }],
     name: 'addressRegistrar',
-    outputs: [{ name: 'teamNumber', internalType: 'uint8', type: 'uint8' }],
+    outputs: [{ name: 'teamNumber', internalType: 'uint16', type: 'uint16' }],
   },
   {
     stateMutability: 'view',
@@ -517,7 +531,7 @@ export const iPixelsMapABI = [
             internalType: 'uint32',
             type: 'uint32',
           },
-          { name: 'colorTeamNumber', internalType: 'uint8', type: 'uint8' },
+          { name: 'colorTeamNumber', internalType: 'uint16', type: 'uint16' },
           { name: 'color', internalType: 'uint8', type: 'uint8' },
         ],
       },
@@ -548,7 +562,7 @@ export const iPixelsMapABI = [
             internalType: 'uint32',
             type: 'uint32',
           },
-          { name: 'colorTeamNumber', internalType: 'uint8', type: 'uint8' },
+          { name: 'colorTeamNumber', internalType: 'uint16', type: 'uint16' },
           { name: 'color', internalType: 'uint8', type: 'uint8' },
         ],
       },
@@ -576,7 +590,7 @@ export const iPixelsMapABI = [
             internalType: 'uint32',
             type: 'uint32',
           },
-          { name: 'colorTeamNumber', internalType: 'uint8', type: 'uint8' },
+          { name: 'colorTeamNumber', internalType: 'uint16', type: 'uint16' },
           { name: 'color', internalType: 'uint8', type: 'uint8' },
         ],
       },
@@ -585,7 +599,9 @@ export const iPixelsMapABI = [
   {
     stateMutability: 'view',
     type: 'function',
-    inputs: [{ name: 'teamNumbers', internalType: 'uint8[]', type: 'uint8[]' }],
+    inputs: [
+      { name: 'teamNumbers', internalType: 'uint16[]', type: 'uint16[]' },
+    ],
     name: 'getTeamNames',
     outputs: [{ name: 'teams', internalType: 'string[]', type: 'string[]' }],
   },
@@ -595,7 +611,7 @@ export const iPixelsMapABI = [
     inputs: [{ name: 'users', internalType: 'address[]', type: 'address[]' }],
     name: 'getTeamNumbers',
     outputs: [
-      { name: 'teamNumbers', internalType: 'uint8[]', type: 'uint8[]' },
+      { name: 'teamNumbers', internalType: 'uint16[]', type: 'uint16[]' },
     ],
   },
   {
@@ -620,7 +636,7 @@ export const iPixelsMapABI = [
   {
     stateMutability: 'nonpayable',
     type: 'function',
-    inputs: [{ name: 'teamNumber', internalType: 'uint8', type: 'uint8' }],
+    inputs: [{ name: 'teamNumber', internalType: 'uint16', type: 'uint16' }],
     name: 'register',
     outputs: [],
   },
@@ -638,21 +654,14 @@ export const iPixelsMapABI = [
     name: 'setTeamName',
     outputs: [],
   },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'teamNumber', internalType: 'uint8', type: 'uint8' }],
-    name: 'teamNames',
-    outputs: [{ name: 'teamName', internalType: 'string', type: 'string' }],
-  },
 ] as const
 
 /**
  *
  */
 export const iPixelsMapAddress = {
-  11791: '0x7b1E6F8771adeDFE06bad75980292d2068F55Ab4',
-  31337: '0x7b1E6F8771adeDFE06bad75980292d2068F55Ab4',
+  11791: '0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3',
+  31337: '0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3',
 } as const
 
 /**
@@ -674,8 +683,8 @@ export const moneyPrinterABI = [
     inputs: [
       { name: '_xist', internalType: 'contract X_IST', type: 'address' },
       { name: '_map', internalType: 'contract IPixelsMap', type: 'address' },
-      { name: 'printerTeamNum', internalType: 'uint8', type: 'uint8' },
-      { name: 'overwriterTeamNum', internalType: 'uint8', type: 'uint8' },
+      { name: 'printerTeamNum', internalType: 'uint16', type: 'uint16' },
+      { name: 'overwriterTeamNum', internalType: 'uint16', type: 'uint16' },
       { name: 'printerTeamName', internalType: 'string', type: 'string' },
       { name: 'overwriterTeamName', internalType: 'string', type: 'string' },
     ],
@@ -705,14 +714,14 @@ export const moneyPrinterABI = [
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MAX_TEAM_NAME_LENGTH',
+    name: 'MINE_EFFECT_MULTIPLIER',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
+    name: 'MIN_TEAM_NAME_LENGTH',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
@@ -741,7 +750,7 @@ export const moneyPrinterABI = [
     type: 'function',
     inputs: [{ name: '', internalType: 'address', type: 'address' }],
     name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
   },
   {
     stateMutability: 'nonpayable',
@@ -765,16 +774,9 @@ export const moneyPrinterABI = [
   {
     stateMutability: 'view',
     type: 'function',
-    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
     name: 'teamActionsCount',
     outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    name: 'teamNames',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
   },
   {
     stateMutability: 'nonpayable',
@@ -796,7 +798,7 @@ export const pixelOverwriterABI = [
     inputs: [
       { name: '_xist', internalType: 'contract X_IST', type: 'address' },
       { name: '_map', internalType: 'contract IPixelsMap', type: 'address' },
-      { name: 'teamNum', internalType: 'uint8', type: 'uint8' },
+      { name: 'teamNum', internalType: 'uint16', type: 'uint16' },
       { name: 'teamName', internalType: 'string', type: 'string' },
     ],
   },
@@ -825,14 +827,14 @@ export const pixelOverwriterABI = [
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MAX_TEAM_NAME_LENGTH',
+    name: 'MINE_EFFECT_MULTIPLIER',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
+    name: 'MIN_TEAM_NAME_LENGTH',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
@@ -861,7 +863,7 @@ export const pixelOverwriterABI = [
     type: 'function',
     inputs: [{ name: '', internalType: 'address', type: 'address' }],
     name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
   },
   {
     stateMutability: 'nonpayable',
@@ -884,16 +886,9 @@ export const pixelOverwriterABI = [
   {
     stateMutability: 'view',
     type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
     name: 'teamActionsCount',
     outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-    name: 'teamNames',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
   },
   {
     stateMutability: 'nonpayable',
@@ -955,14 +950,14 @@ export const pixelsMapABI = [
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MAX_TEAM_NAME_LENGTH',
+    name: 'MINE_EFFECT_MULTIPLIER',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
+    name: 'MIN_TEAM_NAME_LENGTH',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
@@ -991,7 +986,7 @@ export const pixelsMapABI = [
     type: 'function',
     inputs: [{ name: '', internalType: 'address', type: 'address' }],
     name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
   },
   {
     stateMutability: 'view',
@@ -1015,7 +1010,7 @@ export const pixelsMapABI = [
             internalType: 'uint32',
             type: 'uint32',
           },
-          { name: 'colorTeamNumber', internalType: 'uint8', type: 'uint8' },
+          { name: 'colorTeamNumber', internalType: 'uint16', type: 'uint16' },
           { name: 'color', internalType: 'uint8', type: 'uint8' },
         ],
       },
@@ -1046,7 +1041,7 @@ export const pixelsMapABI = [
             internalType: 'uint32',
             type: 'uint32',
           },
-          { name: 'colorTeamNumber', internalType: 'uint8', type: 'uint8' },
+          { name: 'colorTeamNumber', internalType: 'uint16', type: 'uint16' },
           { name: 'color', internalType: 'uint8', type: 'uint8' },
         ],
       },
@@ -1074,7 +1069,7 @@ export const pixelsMapABI = [
             internalType: 'uint32',
             type: 'uint32',
           },
-          { name: 'colorTeamNumber', internalType: 'uint8', type: 'uint8' },
+          { name: 'colorTeamNumber', internalType: 'uint16', type: 'uint16' },
           { name: 'color', internalType: 'uint8', type: 'uint8' },
         ],
       },
@@ -1083,7 +1078,9 @@ export const pixelsMapABI = [
   {
     stateMutability: 'view',
     type: 'function',
-    inputs: [{ name: 'teamNumbers', internalType: 'uint8[]', type: 'uint8[]' }],
+    inputs: [
+      { name: 'teamNumbers', internalType: 'uint16[]', type: 'uint16[]' },
+    ],
     name: 'getTeamNames',
     outputs: [{ name: 'teams', internalType: 'string[]', type: 'string[]' }],
   },
@@ -1092,7 +1089,7 @@ export const pixelsMapABI = [
     type: 'function',
     inputs: [{ name: 'user', internalType: 'address', type: 'address' }],
     name: 'getTeamNumber',
-    outputs: [{ name: 'teamNumber', internalType: 'uint8', type: 'uint8' }],
+    outputs: [{ name: 'teamNumber', internalType: 'uint16', type: 'uint16' }],
   },
   {
     stateMutability: 'view',
@@ -1100,7 +1097,7 @@ export const pixelsMapABI = [
     inputs: [{ name: 'users', internalType: 'address[]', type: 'address[]' }],
     name: 'getTeamNumbers',
     outputs: [
-      { name: 'teamNumbers', internalType: 'uint8[]', type: 'uint8[]' },
+      { name: 'teamNumbers', internalType: 'uint16[]', type: 'uint16[]' },
     ],
   },
   {
@@ -1125,7 +1122,7 @@ export const pixelsMapABI = [
   {
     stateMutability: 'nonpayable',
     type: 'function',
-    inputs: [{ name: 'teamNumber', internalType: 'uint8', type: 'uint8' }],
+    inputs: [{ name: 'teamNumber', internalType: 'uint16', type: 'uint16' }],
     name: 'register',
     outputs: [],
   },
@@ -1146,16 +1143,9 @@ export const pixelsMapABI = [
   {
     stateMutability: 'view',
     type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
     name: 'teamActionsCount',
     outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-    name: 'teamNames',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
   },
 ] as const
 
@@ -1199,14 +1189,14 @@ export const teamNameMesserABI = [
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MAX_TEAM_NAME_LENGTH',
+    name: 'MINE_EFFECT_MULTIPLIER',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
+    name: 'MIN_TEAM_NAME_LENGTH',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
@@ -1235,7 +1225,7 @@ export const teamNameMesserABI = [
     type: 'function',
     inputs: [{ name: '', internalType: 'address', type: 'address' }],
     name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
   },
   {
     stateMutability: 'nonpayable',
@@ -1263,16 +1253,9 @@ export const teamNameMesserABI = [
   {
     stateMutability: 'view',
     type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
     name: 'teamActionsCount',
     outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-    name: 'teamNames',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
   },
 ] as const
 
@@ -1316,14 +1299,14 @@ export const teamNumChangerABI = [
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MAX_TEAM_NAME_LENGTH',
+    name: 'MINE_EFFECT_MULTIPLIER',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
     stateMutability: 'view',
     type: 'function',
     inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
+    name: 'MIN_TEAM_NAME_LENGTH',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
   },
   {
@@ -1352,14 +1335,14 @@ export const teamNumChangerABI = [
     type: 'function',
     inputs: [{ name: '', internalType: 'address', type: 'address' }],
     name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
   },
   {
     stateMutability: 'nonpayable',
     type: 'function',
     inputs: [
       { name: 'user', internalType: 'address', type: 'address' },
-      { name: 'newTeam', internalType: 'uint8', type: 'uint8' },
+      { name: 'newTeam', internalType: 'uint16', type: 'uint16' },
     ],
     name: 'changeTeamNumber',
     outputs: [],
@@ -1378,16 +1361,9 @@ export const teamNumChangerABI = [
   {
     stateMutability: 'view',
     type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
     name: 'teamActionsCount',
     outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-    name: 'teamNames',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
   },
 ] as const
 
@@ -3287,31 +3263,6 @@ export function useIPixelsMapGetTeamNumbers<
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"teamNames"`.
- *
- *
- */
-export function useIPixelsMapTeamNames<
-  TFunctionName extends 'teamNames',
-  TSelectData = ReadContractResult<typeof iPixelsMapABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof iPixelsMapABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof iPixelsMapAddress } = {} as any,
-) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
-  return useContractRead({
-    abi: iPixelsMapABI,
-    address: iPixelsMapAddress[chainId as keyof typeof iPixelsMapAddress],
-    functionName: 'teamNames',
-    ...config,
-  } as UseContractReadConfig<typeof iPixelsMapABI, TFunctionName, TSelectData>)
-}
-
-/**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__.
  *
  *
@@ -3761,29 +3712,6 @@ export function useMoneyPrinterMaxActionCount<
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"MAX_TEAM_NAME_LENGTH"`.
- */
-export function useMoneyPrinterMaxTeamNameLength<
-  TFunctionName extends 'MAX_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'MAX_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
  */
 export function useMoneyPrinterMineEffectMultiplier<
@@ -3798,6 +3726,29 @@ export function useMoneyPrinterMineEffectMultiplier<
   return useContractRead({
     abi: moneyPrinterABI,
     functionName: 'MINE_EFFECT_MULTIPLIER',
+    ...config,
+  } as UseContractReadConfig<
+    typeof moneyPrinterABI,
+    TFunctionName,
+    TSelectData
+  >)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
+ */
+export function useMoneyPrinterMinTeamNameLength<
+  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
+  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: moneyPrinterABI,
+    functionName: 'MIN_TEAM_NAME_LENGTH',
     ...config,
   } as UseContractReadConfig<
     typeof moneyPrinterABI,
@@ -3936,29 +3887,6 @@ export function useMoneyPrinterTeamActionsCount<
   return useContractRead({
     abi: moneyPrinterABI,
     functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"teamNames"`.
- */
-export function useMoneyPrinterTeamNames<
-  TFunctionName extends 'teamNames',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'teamNames',
     ...config,
   } as UseContractReadConfig<
     typeof moneyPrinterABI,
@@ -4202,33 +4130,6 @@ export function usePixelOverwriterMaxActionCount<
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"MAX_TEAM_NAME_LENGTH"`.
- */
-export function usePixelOverwriterMaxTeamNameLength<
-  TFunctionName extends 'MAX_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'MAX_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
  */
 export function usePixelOverwriterMineEffectMultiplier<
@@ -4247,6 +4148,33 @@ export function usePixelOverwriterMineEffectMultiplier<
   return useContractRead({
     abi: pixelOverwriterABI,
     functionName: 'MINE_EFFECT_MULTIPLIER',
+    ...config,
+  } as UseContractReadConfig<
+    typeof pixelOverwriterABI,
+    TFunctionName,
+    TSelectData
+  >)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
+ */
+export function usePixelOverwriterMinTeamNameLength<
+  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
+  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<
+      typeof pixelOverwriterABI,
+      TFunctionName,
+      TSelectData
+    >,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: pixelOverwriterABI,
+    functionName: 'MIN_TEAM_NAME_LENGTH',
     ...config,
   } as UseContractReadConfig<
     typeof pixelOverwriterABI,
@@ -4382,33 +4310,6 @@ export function usePixelOverwriterTeamActionsCount<
   return useContractRead({
     abi: pixelOverwriterABI,
     functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"teamNames"`.
- */
-export function usePixelOverwriterTeamNames<
-  TFunctionName extends 'teamNames',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'teamNames',
     ...config,
   } as UseContractReadConfig<
     typeof pixelOverwriterABI,
@@ -4688,25 +4589,6 @@ export function usePixelsMapMaxActionCount<
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelsMapABI}__ and `functionName` set to `"MAX_TEAM_NAME_LENGTH"`.
- */
-export function usePixelsMapMaxTeamNameLength<
-  TFunctionName extends 'MAX_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof pixelsMapABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelsMapABI,
-    functionName: 'MAX_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelsMapABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
  */
 export function usePixelsMapMineEffectMultiplier<
@@ -4721,6 +4603,25 @@ export function usePixelsMapMineEffectMultiplier<
   return useContractRead({
     abi: pixelsMapABI,
     functionName: 'MINE_EFFECT_MULTIPLIER',
+    ...config,
+  } as UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelsMapABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
+ */
+export function usePixelsMapMinTeamNameLength<
+  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
+  TSelectData = ReadContractResult<typeof pixelsMapABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: pixelsMapABI,
+    functionName: 'MIN_TEAM_NAME_LENGTH',
     ...config,
   } as UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>)
 }
@@ -4930,25 +4831,6 @@ export function usePixelsMapTeamActionsCount<
   return useContractRead({
     abi: pixelsMapABI,
     functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelsMapABI}__ and `functionName` set to `"teamNames"`.
- */
-export function usePixelsMapTeamNames<
-  TFunctionName extends 'teamNames',
-  TSelectData = ReadContractResult<typeof pixelsMapABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelsMapABI,
-    functionName: 'teamNames',
     ...config,
   } as UseContractReadConfig<typeof pixelsMapABI, TFunctionName, TSelectData>)
 }
@@ -5301,29 +5183,6 @@ export function useTeamNameMesserMaxActionCount<
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"MAX_TEAM_NAME_LENGTH"`.
- */
-export function useTeamNameMesserMaxTeamNameLength<
-  TFunctionName extends 'MAX_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNameMesserABI,
-    functionName: 'MAX_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
  */
 export function useTeamNameMesserMineEffectMultiplier<
@@ -5338,6 +5197,29 @@ export function useTeamNameMesserMineEffectMultiplier<
   return useContractRead({
     abi: teamNameMesserABI,
     functionName: 'MINE_EFFECT_MULTIPLIER',
+    ...config,
+  } as UseContractReadConfig<
+    typeof teamNameMesserABI,
+    TFunctionName,
+    TSelectData
+  >)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
+ */
+export function useTeamNameMesserMinTeamNameLength<
+  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
+  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: teamNameMesserABI,
+    functionName: 'MIN_TEAM_NAME_LENGTH',
     ...config,
   } as UseContractReadConfig<
     typeof teamNameMesserABI,
@@ -5453,29 +5335,6 @@ export function useTeamNameMesserTeamActionsCount<
   return useContractRead({
     abi: teamNameMesserABI,
     functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"teamNames"`.
- */
-export function useTeamNameMesserTeamNames<
-  TFunctionName extends 'teamNames',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNameMesserABI,
-    functionName: 'teamNames',
     ...config,
   } as UseContractReadConfig<
     typeof teamNameMesserABI,
@@ -5717,29 +5576,6 @@ export function useTeamNumChangerMaxActionCount<
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"MAX_TEAM_NAME_LENGTH"`.
- */
-export function useTeamNumChangerMaxTeamNameLength<
-  TFunctionName extends 'MAX_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'MAX_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
  */
 export function useTeamNumChangerMineEffectMultiplier<
@@ -5754,6 +5590,29 @@ export function useTeamNumChangerMineEffectMultiplier<
   return useContractRead({
     abi: teamNumChangerABI,
     functionName: 'MINE_EFFECT_MULTIPLIER',
+    ...config,
+  } as UseContractReadConfig<
+    typeof teamNumChangerABI,
+    TFunctionName,
+    TSelectData
+  >)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
+ */
+export function useTeamNumChangerMinTeamNameLength<
+  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
+  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: teamNumChangerABI,
+    functionName: 'MIN_TEAM_NAME_LENGTH',
     ...config,
   } as UseContractReadConfig<
     typeof teamNumChangerABI,
@@ -5869,29 +5728,6 @@ export function useTeamNumChangerTeamActionsCount<
   return useContractRead({
     abi: teamNumChangerABI,
     functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"teamNames"`.
- */
-export function useTeamNumChangerTeamNames<
-  TFunctionName extends 'teamNames',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'teamNames',
     ...config,
   } as UseContractReadConfig<
     typeof teamNumChangerABI,

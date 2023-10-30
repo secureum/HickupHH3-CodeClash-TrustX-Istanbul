@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import {ERC20} from "oz/token/ERC20/ERC20.sol";
 
 contract X_IST is ERC20 {
-    uint256 public constant MAX_TOTAL_MINTS = 1337;
+    uint256 public constant MAX_TOTAL_MINTS = 2023;
     uint256 public constant MAX_MINTS_PER_EPOCH = 12;
     uint256 internal constant EPOCH_PERIOD = 25; // each epoch = 25 blocks (5 mins)
     uint256 internal constant MIN_MINT_AMT = 400e18;

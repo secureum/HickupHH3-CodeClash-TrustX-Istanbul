@@ -6,7 +6,7 @@ interface IPixelsMap {
         address miner;
         uint32 numMinerInstancesOverwritten;
         uint32 numColorInstancesOverwritten;
-        uint8 colorTeamNumber;
+        uint16 colorTeamNumber;
         uint8 color;    
     }
 
@@ -27,9 +27,9 @@ interface IPixelsMap {
     /**************
     *** GETTERS ***
     **************/
-    function addressRegistrar(address user) external view returns (uint8 teamNumber);
-    function getTeamNumbers(address[] calldata users) external view returns (uint8[] memory teamNumbers);
-    function getTeamNames(uint8[] calldata teamNumbers) external view returns (string[] memory teams);
+    function addressRegistrar(address user) external view returns (uint16 teamNumber);
+    function getTeamNumbers(address[] calldata users) external view returns (uint16[] memory teamNumbers);
+    function getTeamNames(uint16[] calldata teamNumbers) external view returns (string[] memory teams);
 
     function getSinglePixelData(uint8 pixel) external view returns (PixelData memory);
     /// range is [startPixel, endPixel)
@@ -39,7 +39,7 @@ interface IPixelsMap {
     /***********************
     *** PUBLIC FUNCTIONS ***
     ************************/
-    function register(uint8 teamNumber) external;
+    function register(uint16 teamNumber) external;
     function setTeamName(string calldata teamName) external;
     // inspired by UniV4, introduce hook
     function placePixels(uint8[] calldata pixels, uint8[] calldata colors, bool hook, bytes calldata data) external;

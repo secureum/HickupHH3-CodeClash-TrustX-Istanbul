@@ -13,9 +13,9 @@ export default defineConfig({
           11791: '0x148412086B279215e2F7feC41A912cBcE4B4c37f'
         },
         IPixelsMap: {
-          // [chains.sepolia.id]: '0x7b1E6F8771adeDFE06bad75980292d2068F55Ab4',
-          [chains.foundry.id]: '0x7b1E6F8771adeDFE06bad75980292d2068F55Ab4',
-          11791: '0x7b1E6F8771adeDFE06bad75980292d2068F55Ab4'
+          // [chains.sepolia.id]: '0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3',
+          [chains.foundry.id]: '0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3',
+          11791: '0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3'
         }
       },
       project: './contracts',

@@ -14,13 +14,13 @@ contract PixelsMap is IPixelsMap {
     uint256 public constant REPLACEMENT_COST = 25e18;
     uint256 public constant REFUND_COST = 120e18;
     uint256 public constant MINE_EFFECT_MULTIPLIER = 2;
-    uint256 public constant MIN_TEAM_NAME_LENGTH = 3;
+    uint256 public constant MIN_TEAM_NAME_LENGTH = 5;
     X_IST public immutable XIST;
 
     mapping(uint8 => PixelData) internal pixelsMap;
-    mapping(address => uint8) public addressRegistrar; 
-    mapping(uint8 => bytes32) internal teamNames;
-    mapping(uint8 => uint8) public teamActionsCount;
+    mapping(address => uint16) public addressRegistrar; 
+    mapping(uint16 => bytes32) internal teamNames;
+    mapping(uint16 => uint8) public teamActionsCount;
     
     constructor(X_IST _XIST) {
         XIST = _XIST;
@@ -28,26 +28,26 @@ contract PixelsMap is IPixelsMap {
 
     modifier gameIsOngoing() {
         uint256 gameEndTime = XIST.gameEndTime();
-        uint8 teamNumber = getTeamNumber(msg.sender);
+        uint16 teamNumber = getTeamNumber(msg.sender);
         if (block.timestamp > gameEndTime) revert GameEnded();
-        else if (block.timestamp + 4 hours > gameEndTime) {
+        else if (block.timestamp + 2 hours > gameEndTime) {
             // number of actions are capped in the final phase
             if (teamActionsCount[teamNumber] > MAX_ACTION_COUNT) revert MaxActionsPlayed();
         }
         _;
-        if (block.timestamp + 4 hours > gameEndTime) ++teamActionsCount[teamNumber];
+        if (block.timestamp + 2 hours > gameEndTime) ++teamActionsCount[teamNumber];
     }
 
     /// @dev user must be registered
-    function getTeamNumber(address user) public view returns (uint8 teamNumber) {
+    function getTeamNumber(address user) public view returns (uint16 teamNumber) {
         teamNumber = addressRegistrar[user];
         if (teamNumber == 0) revert NotRegistered();
     }
 
-    /// @dev capped at 100 teams
-    function register(uint8 teamNumber) external {
-        if (block.timestamp + 4 hours > XIST.gameEndTime()) revert RegistrationsEnded();
-        if (teamNumber == 0 || teamNumber > 100) revert BadTeamNumber();
+    /// @dev capped at 1000 teams
+    function register(uint16 teamNumber) external {
+        if (block.timestamp + 2 hours > XIST.gameEndTime()) revert RegistrationsEnded();
+        if (teamNumber == 0 || teamNumber > 1000) revert BadTeamNumber();
         if (addressRegistrar[msg.sender] != 0) revert AlreadyRegistered();
         addressRegistrar[msg.sender] = teamNumber;
         XIST.mint(msg.sender);
@@ -55,7 +55,7 @@ contract PixelsMap is IPixelsMap {
 
     /// @dev can only be set once
     function setTeamName(string calldata teamName) external {
-        uint8 teamNumber = getTeamNumber(msg.sender);
+        uint16 teamNumber = getTeamNumber(msg.sender);
         bytes32 storedTeamName = teamNames[teamNumber];
         if (keccak256(abi.encodePacked(storedTeamName)) != keccak256(abi.encodePacked(bytes32(0)))) revert TeamNameAlreadySet();
         if (bytes(teamName).length < MIN_TEAM_NAME_LENGTH) revert BadTeamName();
@@ -86,7 +86,7 @@ contract PixelsMap is IPixelsMap {
         uint256 gasConsumptionCost = hook ? GAS_UNIT_COST * (preGasLeft - postGasLeft) : 0;
 
         uint256 totalPayable = gasConsumptionCost;
-        uint8 teamNumber = _validateTeam(msg.sender);
+        uint16 teamNumber = _validateTeam(msg.sender);
         for (uint i; i < pixels.length; ++i) {
             // bitmasking on pixels[i] to keep it within 8x8 pixel map
             // bitmasking on colors[i] to keep it within 16 colors
@@ -95,7 +95,7 @@ contract PixelsMap is IPixelsMap {
         XIST.safeTransferFrom(msg.sender, address(this), totalPayable);
     }
 
-    function _validateTeam(address user) internal view returns (uint8 teamNumber) {
+    function _validateTeam(address user) internal view returns (uint16 teamNumber) {
         teamNumber = getTeamNumber(user);
         bytes32 storedTeamName = teamNames[teamNumber];
         if (
@@ -107,7 +107,7 @@ contract PixelsMap is IPixelsMap {
     function _processPlacePixels(
         uint8 pixel,
         uint8 color,
-        uint8 teamNumber
+        uint16 teamNumber
     ) internal returns (uint256 amtPayable) {
         PixelData storage data = pixelsMap[pixel];
         // math ops unlikely to encounter overflow
@@ -188,7 +188,7 @@ contract PixelsMap is IPixelsMap {
     }
 
     function resetPixels(uint8[] calldata pixels) public gameIsOngoing {
-        uint8 teamNumber = _validateTeam(msg.sender);
+        uint16 teamNumber = _validateTeam(msg.sender);
         uint256 totalRefund;
         for (uint i; i < pixels.length; ++i) {
             PixelData storage data = pixelsMap[pixels[i]];
@@ -209,15 +209,15 @@ contract PixelsMap is IPixelsMap {
     /**************
     *** GETTERS ***
     **************/
-    function getTeamNumbers(address[] calldata users) external view returns (uint8[] memory teamNumbers) {
+    function getTeamNumbers(address[] calldata users) external view returns (uint16[] memory teamNumbers) {
         uint256 arrLength = users.length;
-        teamNumbers = new uint8[](arrLength);
+        teamNumbers = new uint16[](arrLength);
         for (uint256 i; i < arrLength; ++i) {
             teamNumbers[i] = addressRegistrar[users[i]];
         }
     }
 
-    function getTeamNames(uint8[] calldata teamNumbers) external view returns (string[] memory teams) {
+    function getTeamNames(uint16[] calldata teamNumbers) external view returns (string[] memory teams) {
         uint256 arrLength = teamNumbers.length;
         teams = new string[](arrLength);
         for (uint256 i; i < arrLength; ++i) {

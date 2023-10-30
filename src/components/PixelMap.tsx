@@ -25,9 +25,18 @@ interface Pixel {
 
 const NULL_ADDRESS = '0x0000000000000000000000000000000000000000'
 
+let _pixelMap: Pixel[] = [];
+
 export function PixelMap() {
   // fetch and filter pixel data
   const { pixelMap, epochNum, epochMintsRemaining, totalMintsRemaining, endTime, isLoading } = fetchAndFilterData()
+  if (_pixelMap.length == 0) {
+    _pixelMap = pixelMap;
+  } else {
+    pixelMap.forEach((pixel, index) => {
+        _pixelMap[index] = pixel;
+    })
+  }
   return (
     <Sheet className="pt-2">
         <Grid container direction="row" justifyContent="space-between" alignItems="baseline" spacing={1}>
@@ -37,8 +46,8 @@ export function PixelMap() {
                 totalMintsRemaining={totalMintsRemaining}
                 endTime={endTime}
             />
-            <DrawPixelMap pixelMap={pixelMap as Pixel[]} isLoading={isLoading}/>
-            <ScoringTables pixelMap={pixelMap as Pixel[]} isLoading={isLoading}/>
+            <DrawPixelMap pixelMap={_pixelMap as Pixel[]} isLoading={isLoading}/>
+            <ScoringTables pixelMap={_pixelMap as Pixel[]} isLoading={isLoading}/>
         </Grid>
     </Sheet>
     
