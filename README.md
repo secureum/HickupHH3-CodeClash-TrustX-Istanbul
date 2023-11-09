@@ -7,7 +7,7 @@ Come create an art piece on a 8x8 pixel map canvas for TrustX Istanbul! Register
 - `PixelsMap`: ``
 - `X_IST`: ``
 
-## Actions (Basic)
+## Actions (Basic Explanation)
 
 ### Registration
 First, join a team by calling `register(uint16 teamNumber)`. Largest team number is 1000 (ie. max 1000 teams). Then, set the team name (minimum of 5 characters) if it isn't already set by other team members by calling `setTeamName(string teamName)`.
@@ -21,7 +21,7 @@ Mining a pixel entitles the miner to receive 2x X_IST payable by the next caller
 ### Resetting Pixels
 Resetting the pixel resets its data and refunds the caller, provided that you're the pixel's painter. This action is performed by calling `resetPixels()`.
 
-## Actions (Technical)
+## Actions (Technical Explanation)
 Note that actions generally require X_IST tokens that's minted upon registration (subject to availability and rate limits).
 
 ### 1. `register()`
