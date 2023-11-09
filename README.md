@@ -71,6 +71,8 @@ Miner payments and refunds are subject to the available funds held by the `Pixel
 
 - Samczsun: Most creative exploit. Samczsun is renowned for his prowess in uncovering vulnerabilities and exploits. Get creative with your pixel artistry and showcase the most imaginative exploit on the canvas. Unleash your ingenuity in the pixel realm!
 
-## Build Framework
-[Next.js](https://nextjs.org) + [Foundry](https://book.getfoundry.sh/) + [wagmi](https://wagmi.sh) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
-
+## UI Build
+```
+yarn
+npm run dev
+```

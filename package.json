@@ -4,35 +4,35 @@
   "private": true,
   "scripts": {
     "anvil": "source .env && anvil -m \"$ANVIL_MNEMONIC\" --fork-url $ANVIL_FORK_URL --block-time 12",
-    "build": "yarn run wagmi && next build",
+    "build": "vite build",
     "deploy:contract": "source .env && forge script contracts/script/Deploy.s.sol --rpc-url $FORGE_RPC_URL --broadcast --slow",
-    "dev": "yarn run wagmi && next dev",
-    "dev:foundry": "yarn run dev & wagmi generate --watch & yarn run anvil",
-    "start": "next start",
-    "lint": "next lint",
-    "wagmi": "wagmi generate"
+    "dev": "vite dev",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint ."
   },
+  "type": "module",
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@fontsource/inter": "^5.0.8",
-    "@mui/joy": "^5.0.0-beta.8",
-    "@wagmi/cli": "^1.0.0",
-    "next": "^13.4.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.3",
-    "viem": "~0.3.36",
-    "wagmi": "^1.0.6"
+    "@wagmi/core": "^1.4.5",
+    "@zerodevx/svelte-toast": "^0.9.5",
+    "viem": "^1.18.4"
   },
   "devDependencies": {
-    "@types/node": "^17.0.31",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.3",
+    "@sveltejs/adapter-auto": "^2.1.1",
+    "@sveltejs/kit": "^1.27.3",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.15.0",
-    "eslint-config-next": "^12.1.6",
+    "eslint": "^8.53.0",
+    "eslint-plugin-svelte3": "^4.0.0",
     "postcss": "^8.4.31",
-    "typescript": "^5.0.4"
+    "postcss-load-config": "^4.0.1",
+    "svelte": "^4.2.2",
+    "svelte-check": "^3.5.2",
+    "tailwindcss": "^3.3.5",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
   }
 }
