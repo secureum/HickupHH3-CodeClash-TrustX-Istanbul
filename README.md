@@ -69,6 +69,8 @@ Miner payments and refunds are subject to the available funds held by the `Pixel
 - Justin Sun: Wallet holding the most X_IST tokens
 - Samczsun: Most creative exploit
 
-## Build Framework
-[Next.js](https://nextjs.org) + [Foundry](https://book.getfoundry.sh/) + [wagmi](https://wagmi.sh) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
-
+## UI Build
+```
+yarn
+npm run dev
+```
