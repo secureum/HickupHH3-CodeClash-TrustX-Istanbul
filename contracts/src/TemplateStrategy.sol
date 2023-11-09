@@ -6,7 +6,7 @@ import {X_IST} from "./X_IST.sol";
 
 contract Boilerplate {
     X_IST XIST = X_IST(0x148412086B279215e2F7feC41A912cBcE4B4c37f);
-    IPixelsMap map = IPixelsMap(0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3);
+    IPixelsMap map = IPixelsMap(0x6221F25bA49CA8d8cc42AFCDd04BB7f22e6758C6);
 
     // registration
     constructor(uint8 teamNum, string memory teamName) {

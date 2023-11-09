@@ -660,8 +660,8 @@ export const iPixelsMapABI = [
  *
  */
 export const iPixelsMapAddress = {
-  11791: '0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3',
-  31337: '0xEA6D13B779583edfA3ea1198ceDFd05F7Cf1bfd3',
+  11791: '0x6221F25bA49CA8d8cc42AFCDd04BB7f22e6758C6',
+  31337: '0x6221F25bA49CA8d8cc42AFCDd04BB7f22e6758C6',
 } as const
 
 /**
@@ -671,233 +671,6 @@ export const iPixelsMapConfig = {
   address: iPixelsMapAddress,
   abi: iPixelsMapABI,
 } as const
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// MoneyPrinter
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export const moneyPrinterABI = [
-  {
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-    inputs: [
-      { name: '_xist', internalType: 'contract X_IST', type: 'address' },
-      { name: '_map', internalType: 'contract IPixelsMap', type: 'address' },
-      { name: 'printerTeamNum', internalType: 'uint16', type: 'uint16' },
-      { name: 'overwriterTeamNum', internalType: 'uint16', type: 'uint16' },
-      { name: 'printerTeamName', internalType: 'string', type: 'string' },
-      { name: 'overwriterTeamName', internalType: 'string', type: 'string' },
-    ],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'GAS_UNIT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'INIT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MAX_ACTION_COUNT',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MIN_TEAM_NAME_LENGTH',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'REFUND_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'REPLACEMENT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'XIST',
-    outputs: [{ name: '', internalType: 'contract X_IST', type: 'address' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'address', type: 'address' }],
-    name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: 'colors', internalType: 'uint8[]', type: 'uint8[]' },
-    ],
-    name: 'brrrr',
-    outputs: [],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'overwriter',
-    outputs: [
-      { name: '', internalType: 'contract PixelOverwriter', type: 'address' },
-    ],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
-    name: 'teamActionsCount',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'to', internalType: 'address', type: 'address' }],
-    name: 'withdrawToken',
-    outputs: [],
-  },
-] as const
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// PixelOverwriter
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export const pixelOverwriterABI = [
-  {
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-    inputs: [
-      { name: '_xist', internalType: 'contract X_IST', type: 'address' },
-      { name: '_map', internalType: 'contract IPixelsMap', type: 'address' },
-      { name: 'teamNum', internalType: 'uint16', type: 'uint16' },
-      { name: 'teamName', internalType: 'string', type: 'string' },
-    ],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'GAS_UNIT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'INIT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MAX_ACTION_COUNT',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MIN_TEAM_NAME_LENGTH',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'REFUND_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'REPLACEMENT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'XIST',
-    outputs: [{ name: '', internalType: 'contract X_IST', type: 'address' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'address', type: 'address' }],
-    name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'pixelNums', internalType: 'uint8[]', type: 'uint8[]' }],
-    name: 'overwritePixels',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: 'data', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'placePixelsHook',
-    outputs: [],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
-    name: 'teamActionsCount',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'to', internalType: 'address', type: 'address' }],
-    name: 'withdrawToken',
-    outputs: [],
-  },
-] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PixelsMap
@@ -1150,10 +923,10 @@ export const pixelsMapABI = [
 ] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TeamNameMesser
+// TokenPuller
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const teamNameMesserABI = [
+export const tokenPullerABI = [
   {
     stateMutability: 'nonpayable',
     type: 'constructor',
@@ -1231,18 +1004,6 @@ export const teamNameMesserABI = [
     stateMutability: 'nonpayable',
     type: 'function',
     inputs: [
-      { name: 'team', internalType: 'uint8', type: 'uint8' },
-      { name: 'teamName', internalType: 'string', type: 'string' },
-      { name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: 'colors', internalType: 'uint8[]', type: 'uint8[]' },
-    ],
-    name: 'messUpTeamName',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
       { name: '', internalType: 'uint8[]', type: 'uint8[]' },
       { name: '', internalType: 'uint8[]', type: 'uint8[]' },
       { name: 'data', internalType: 'bytes', type: 'bytes' },
@@ -1251,111 +1012,10 @@ export const teamNameMesserABI = [
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
-    name: 'teamActionsCount',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-  },
-] as const
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TeamNumChanger
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export const teamNumChangerABI = [
-  {
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-    inputs: [
-      { name: '_xist', internalType: 'contract X_IST', type: 'address' },
-      { name: '_map', internalType: 'contract IPixelsMap', type: 'address' },
-      { name: 'teamNum', internalType: 'uint8', type: 'uint8' },
-      { name: 'teamName', internalType: 'string', type: 'string' },
-    ],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'GAS_UNIT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'INIT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MAX_ACTION_COUNT',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MINE_EFFECT_MULTIPLIER',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'MIN_TEAM_NAME_LENGTH',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'REFUND_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'REPLACEMENT_COST',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'XIST',
-    outputs: [{ name: '', internalType: 'contract X_IST', type: 'address' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'address', type: 'address' }],
-    name: 'addressRegistrar',
-    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
-  },
-  {
     stateMutability: 'nonpayable',
     type: 'function',
-    inputs: [
-      { name: 'user', internalType: 'address', type: 'address' },
-      { name: 'newTeam', internalType: 'uint16', type: 'uint16' },
-    ],
-    name: 'changeTeamNumber',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: 'data', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'placePixelsHook',
+    inputs: [],
+    name: 'pullTokenFromContract',
     outputs: [],
   },
   {
@@ -1379,6 +1039,7 @@ export const xIstABI = [
     stateMutability: 'nonpayable',
     type: 'constructor',
     inputs: [
+      { name: '_gameStartTime', internalType: 'uint256', type: 'uint256' },
       { name: '_gameEndTime', internalType: 'uint256', type: 'uint256' },
     ],
   },
@@ -3621,899 +3282,6 @@ export function usePrepareIPixelsMapSetTeamName(
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__.
- */
-export function useMoneyPrinterRead<
-  TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"GAS_UNIT_COST"`.
- */
-export function useMoneyPrinterGasUnitCost<
-  TFunctionName extends 'GAS_UNIT_COST',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'GAS_UNIT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"INIT_COST"`.
- */
-export function useMoneyPrinterInitCost<
-  TFunctionName extends 'INIT_COST',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'INIT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"MAX_ACTION_COUNT"`.
- */
-export function useMoneyPrinterMaxActionCount<
-  TFunctionName extends 'MAX_ACTION_COUNT',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'MAX_ACTION_COUNT',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
- */
-export function useMoneyPrinterMineEffectMultiplier<
-  TFunctionName extends 'MINE_EFFECT_MULTIPLIER',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'MINE_EFFECT_MULTIPLIER',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
- */
-export function useMoneyPrinterMinTeamNameLength<
-  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'MIN_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"REFUND_COST"`.
- */
-export function useMoneyPrinterRefundCost<
-  TFunctionName extends 'REFUND_COST',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'REFUND_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"REPLACEMENT_COST"`.
- */
-export function useMoneyPrinterReplacementCost<
-  TFunctionName extends 'REPLACEMENT_COST',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'REPLACEMENT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"XIST"`.
- */
-export function useMoneyPrinterXist<
-  TFunctionName extends 'XIST',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'XIST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"addressRegistrar"`.
- */
-export function useMoneyPrinterAddressRegistrar<
-  TFunctionName extends 'addressRegistrar',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'addressRegistrar',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"overwriter"`.
- */
-export function useMoneyPrinterOverwriter<
-  TFunctionName extends 'overwriter',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'overwriter',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"teamActionsCount"`.
- */
-export function useMoneyPrinterTeamActionsCount<
-  TFunctionName extends 'teamActionsCount',
-  TSelectData = ReadContractResult<typeof moneyPrinterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof moneyPrinterABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: moneyPrinterABI,
-    functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<
-    typeof moneyPrinterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link moneyPrinterABI}__.
- */
-export function useMoneyPrinterWrite<
-  TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof moneyPrinterABI,
-          string
-        >['request']['abi'],
-        TFunctionName,
-        TMode
-      >
-    : UseContractWriteConfig<typeof moneyPrinterABI, TFunctionName, TMode> & {
-        abi?: never
-      } = {} as any,
-) {
-  return useContractWrite<typeof moneyPrinterABI, TFunctionName, TMode>({
-    abi: moneyPrinterABI,
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"brrrr"`.
- */
-export function useMoneyPrinterBrrrr<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof moneyPrinterABI,
-          'brrrr'
-        >['request']['abi'],
-        'brrrr',
-        TMode
-      > & { functionName?: 'brrrr' }
-    : UseContractWriteConfig<typeof moneyPrinterABI, 'brrrr', TMode> & {
-        abi?: never
-        functionName?: 'brrrr'
-      } = {} as any,
-) {
-  return useContractWrite<typeof moneyPrinterABI, 'brrrr', TMode>({
-    abi: moneyPrinterABI,
-    functionName: 'brrrr',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"withdrawToken"`.
- */
-export function useMoneyPrinterWithdrawToken<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof moneyPrinterABI,
-          'withdrawToken'
-        >['request']['abi'],
-        'withdrawToken',
-        TMode
-      > & { functionName?: 'withdrawToken' }
-    : UseContractWriteConfig<typeof moneyPrinterABI, 'withdrawToken', TMode> & {
-        abi?: never
-        functionName?: 'withdrawToken'
-      } = {} as any,
-) {
-  return useContractWrite<typeof moneyPrinterABI, 'withdrawToken', TMode>({
-    abi: moneyPrinterABI,
-    functionName: 'withdrawToken',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link moneyPrinterABI}__.
- */
-export function usePrepareMoneyPrinterWrite<TFunctionName extends string>(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof moneyPrinterABI, TFunctionName>,
-    'abi'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: moneyPrinterABI,
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof moneyPrinterABI, TFunctionName>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"brrrr"`.
- */
-export function usePrepareMoneyPrinterBrrrr(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof moneyPrinterABI, 'brrrr'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: moneyPrinterABI,
-    functionName: 'brrrr',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof moneyPrinterABI, 'brrrr'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link moneyPrinterABI}__ and `functionName` set to `"withdrawToken"`.
- */
-export function usePrepareMoneyPrinterWithdrawToken(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof moneyPrinterABI, 'withdrawToken'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: moneyPrinterABI,
-    functionName: 'withdrawToken',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof moneyPrinterABI, 'withdrawToken'>)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__.
- */
-export function usePixelOverwriterRead<
-  TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"GAS_UNIT_COST"`.
- */
-export function usePixelOverwriterGasUnitCost<
-  TFunctionName extends 'GAS_UNIT_COST',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'GAS_UNIT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"INIT_COST"`.
- */
-export function usePixelOverwriterInitCost<
-  TFunctionName extends 'INIT_COST',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'INIT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"MAX_ACTION_COUNT"`.
- */
-export function usePixelOverwriterMaxActionCount<
-  TFunctionName extends 'MAX_ACTION_COUNT',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'MAX_ACTION_COUNT',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
- */
-export function usePixelOverwriterMineEffectMultiplier<
-  TFunctionName extends 'MINE_EFFECT_MULTIPLIER',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'MINE_EFFECT_MULTIPLIER',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
- */
-export function usePixelOverwriterMinTeamNameLength<
-  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'MIN_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"REFUND_COST"`.
- */
-export function usePixelOverwriterRefundCost<
-  TFunctionName extends 'REFUND_COST',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'REFUND_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"REPLACEMENT_COST"`.
- */
-export function usePixelOverwriterReplacementCost<
-  TFunctionName extends 'REPLACEMENT_COST',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'REPLACEMENT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"XIST"`.
- */
-export function usePixelOverwriterXist<
-  TFunctionName extends 'XIST',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'XIST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"addressRegistrar"`.
- */
-export function usePixelOverwriterAddressRegistrar<
-  TFunctionName extends 'addressRegistrar',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'addressRegistrar',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"teamActionsCount"`.
- */
-export function usePixelOverwriterTeamActionsCount<
-  TFunctionName extends 'teamActionsCount',
-  TSelectData = ReadContractResult<typeof pixelOverwriterABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof pixelOverwriterABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: pixelOverwriterABI,
-    functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<
-    typeof pixelOverwriterABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__.
- */
-export function usePixelOverwriterWrite<
-  TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof pixelOverwriterABI,
-          string
-        >['request']['abi'],
-        TFunctionName,
-        TMode
-      >
-    : UseContractWriteConfig<
-        typeof pixelOverwriterABI,
-        TFunctionName,
-        TMode
-      > & {
-        abi?: never
-      } = {} as any,
-) {
-  return useContractWrite<typeof pixelOverwriterABI, TFunctionName, TMode>({
-    abi: pixelOverwriterABI,
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"overwritePixels"`.
- */
-export function usePixelOverwriterOverwritePixels<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof pixelOverwriterABI,
-          'overwritePixels'
-        >['request']['abi'],
-        'overwritePixels',
-        TMode
-      > & { functionName?: 'overwritePixels' }
-    : UseContractWriteConfig<
-        typeof pixelOverwriterABI,
-        'overwritePixels',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'overwritePixels'
-      } = {} as any,
-) {
-  return useContractWrite<typeof pixelOverwriterABI, 'overwritePixels', TMode>({
-    abi: pixelOverwriterABI,
-    functionName: 'overwritePixels',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"placePixelsHook"`.
- */
-export function usePixelOverwriterPlacePixelsHook<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof pixelOverwriterABI,
-          'placePixelsHook'
-        >['request']['abi'],
-        'placePixelsHook',
-        TMode
-      > & { functionName?: 'placePixelsHook' }
-    : UseContractWriteConfig<
-        typeof pixelOverwriterABI,
-        'placePixelsHook',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'placePixelsHook'
-      } = {} as any,
-) {
-  return useContractWrite<typeof pixelOverwriterABI, 'placePixelsHook', TMode>({
-    abi: pixelOverwriterABI,
-    functionName: 'placePixelsHook',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"withdrawToken"`.
- */
-export function usePixelOverwriterWithdrawToken<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof pixelOverwriterABI,
-          'withdrawToken'
-        >['request']['abi'],
-        'withdrawToken',
-        TMode
-      > & { functionName?: 'withdrawToken' }
-    : UseContractWriteConfig<
-        typeof pixelOverwriterABI,
-        'withdrawToken',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'withdrawToken'
-      } = {} as any,
-) {
-  return useContractWrite<typeof pixelOverwriterABI, 'withdrawToken', TMode>({
-    abi: pixelOverwriterABI,
-    functionName: 'withdrawToken',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__.
- */
-export function usePreparePixelOverwriterWrite<TFunctionName extends string>(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof pixelOverwriterABI, TFunctionName>,
-    'abi'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: pixelOverwriterABI,
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof pixelOverwriterABI, TFunctionName>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"overwritePixels"`.
- */
-export function usePreparePixelOverwriterOverwritePixels(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof pixelOverwriterABI, 'overwritePixels'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: pixelOverwriterABI,
-    functionName: 'overwritePixels',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof pixelOverwriterABI,
-    'overwritePixels'
-  >)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"placePixelsHook"`.
- */
-export function usePreparePixelOverwriterPlacePixelsHook(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof pixelOverwriterABI, 'placePixelsHook'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: pixelOverwriterABI,
-    functionName: 'placePixelsHook',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof pixelOverwriterABI,
-    'placePixelsHook'
-  >)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link pixelOverwriterABI}__ and `functionName` set to `"withdrawToken"`.
- */
-export function usePreparePixelOverwriterWithdrawToken(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof pixelOverwriterABI, 'withdrawToken'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: pixelOverwriterABI,
-    functionName: 'withdrawToken',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof pixelOverwriterABI,
-    'withdrawToken'
-  >)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link pixelsMapABI}__.
  */
 export function usePixelsMapRead<
@@ -5092,331 +3860,256 @@ export function usePreparePixelsMapSetTeamName(
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__.
  */
-export function useTeamNameMesserRead<
+export function useTokenPullerRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"GAS_UNIT_COST"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"GAS_UNIT_COST"`.
  */
-export function useTeamNameMesserGasUnitCost<
+export function useTokenPullerGasUnitCost<
   TFunctionName extends 'GAS_UNIT_COST',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'GAS_UNIT_COST',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"INIT_COST"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"INIT_COST"`.
  */
-export function useTeamNameMesserInitCost<
+export function useTokenPullerInitCost<
   TFunctionName extends 'INIT_COST',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'INIT_COST',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"MAX_ACTION_COUNT"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"MAX_ACTION_COUNT"`.
  */
-export function useTeamNameMesserMaxActionCount<
+export function useTokenPullerMaxActionCount<
   TFunctionName extends 'MAX_ACTION_COUNT',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'MAX_ACTION_COUNT',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
  */
-export function useTeamNameMesserMineEffectMultiplier<
+export function useTokenPullerMineEffectMultiplier<
   TFunctionName extends 'MINE_EFFECT_MULTIPLIER',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'MINE_EFFECT_MULTIPLIER',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
  */
-export function useTeamNameMesserMinTeamNameLength<
+export function useTokenPullerMinTeamNameLength<
   TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'MIN_TEAM_NAME_LENGTH',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"REFUND_COST"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"REFUND_COST"`.
  */
-export function useTeamNameMesserRefundCost<
+export function useTokenPullerRefundCost<
   TFunctionName extends 'REFUND_COST',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'REFUND_COST',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"REPLACEMENT_COST"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"REPLACEMENT_COST"`.
  */
-export function useTeamNameMesserReplacementCost<
+export function useTokenPullerReplacementCost<
   TFunctionName extends 'REPLACEMENT_COST',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'REPLACEMENT_COST',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"XIST"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"XIST"`.
  */
-export function useTeamNameMesserXist<
+export function useTokenPullerXist<
   TFunctionName extends 'XIST',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'XIST',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"addressRegistrar"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"addressRegistrar"`.
  */
-export function useTeamNameMesserAddressRegistrar<
+export function useTokenPullerAddressRegistrar<
   TFunctionName extends 'addressRegistrar',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'addressRegistrar',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"teamActionsCount"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"teamActionsCount"`.
  */
-export function useTeamNameMesserTeamActionsCount<
+export function useTokenPullerTeamActionsCount<
   TFunctionName extends 'teamActionsCount',
-  TSelectData = ReadContractResult<typeof teamNameMesserABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof tokenPullerABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<typeof teamNameMesserABI, TFunctionName, TSelectData>,
+    UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return useContractRead({
-    abi: teamNameMesserABI,
+    abi: tokenPullerABI,
     functionName: 'teamActionsCount',
     ...config,
-  } as UseContractReadConfig<
-    typeof teamNameMesserABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof tokenPullerABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link teamNameMesserABI}__.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link tokenPullerABI}__.
  */
-export function useTeamNameMesserWrite<
+export function useTokenPullerWrite<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof teamNameMesserABI,
+          typeof tokenPullerABI,
           string
         >['request']['abi'],
         TFunctionName,
         TMode
       >
-    : UseContractWriteConfig<typeof teamNameMesserABI, TFunctionName, TMode> & {
+    : UseContractWriteConfig<typeof tokenPullerABI, TFunctionName, TMode> & {
         abi?: never
       } = {} as any,
 ) {
-  return useContractWrite<typeof teamNameMesserABI, TFunctionName, TMode>({
-    abi: teamNameMesserABI,
+  return useContractWrite<typeof tokenPullerABI, TFunctionName, TMode>({
+    abi: tokenPullerABI,
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"messUpTeamName"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"placePixelsHook"`.
  */
-export function useTeamNameMesserMessUpTeamName<
+export function useTokenPullerPlacePixelsHook<
   TMode extends WriteContractMode = undefined,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof teamNameMesserABI,
-          'messUpTeamName'
-        >['request']['abi'],
-        'messUpTeamName',
-        TMode
-      > & { functionName?: 'messUpTeamName' }
-    : UseContractWriteConfig<
-        typeof teamNameMesserABI,
-        'messUpTeamName',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'messUpTeamName'
-      } = {} as any,
-) {
-  return useContractWrite<typeof teamNameMesserABI, 'messUpTeamName', TMode>({
-    abi: teamNameMesserABI,
-    functionName: 'messUpTeamName',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"placePixelsHook"`.
- */
-export function useTeamNameMesserPlacePixelsHook<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof teamNameMesserABI,
+          typeof tokenPullerABI,
           'placePixelsHook'
         >['request']['abi'],
         'placePixelsHook',
         TMode
       > & { functionName?: 'placePixelsHook' }
     : UseContractWriteConfig<
-        typeof teamNameMesserABI,
+        typeof tokenPullerABI,
         'placePixelsHook',
         TMode
       > & {
@@ -5424,456 +4117,98 @@ export function useTeamNameMesserPlacePixelsHook<
         functionName?: 'placePixelsHook'
       } = {} as any,
 ) {
-  return useContractWrite<typeof teamNameMesserABI, 'placePixelsHook', TMode>({
-    abi: teamNameMesserABI,
+  return useContractWrite<typeof tokenPullerABI, 'placePixelsHook', TMode>({
+    abi: tokenPullerABI,
     functionName: 'placePixelsHook',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link teamNameMesserABI}__.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"pullTokenFromContract"`.
  */
-export function usePrepareTeamNameMesserWrite<TFunctionName extends string>(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof teamNameMesserABI, TFunctionName>,
-    'abi'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: teamNameMesserABI,
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof teamNameMesserABI, TFunctionName>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"messUpTeamName"`.
- */
-export function usePrepareTeamNameMesserMessUpTeamName(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof teamNameMesserABI, 'messUpTeamName'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: teamNameMesserABI,
-    functionName: 'messUpTeamName',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof teamNameMesserABI,
-    'messUpTeamName'
-  >)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link teamNameMesserABI}__ and `functionName` set to `"placePixelsHook"`.
- */
-export function usePrepareTeamNameMesserPlacePixelsHook(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof teamNameMesserABI, 'placePixelsHook'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: teamNameMesserABI,
-    functionName: 'placePixelsHook',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof teamNameMesserABI,
-    'placePixelsHook'
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__.
- */
-export function useTeamNumChangerRead<
-  TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"GAS_UNIT_COST"`.
- */
-export function useTeamNumChangerGasUnitCost<
-  TFunctionName extends 'GAS_UNIT_COST',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'GAS_UNIT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"INIT_COST"`.
- */
-export function useTeamNumChangerInitCost<
-  TFunctionName extends 'INIT_COST',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'INIT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"MAX_ACTION_COUNT"`.
- */
-export function useTeamNumChangerMaxActionCount<
-  TFunctionName extends 'MAX_ACTION_COUNT',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'MAX_ACTION_COUNT',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"MINE_EFFECT_MULTIPLIER"`.
- */
-export function useTeamNumChangerMineEffectMultiplier<
-  TFunctionName extends 'MINE_EFFECT_MULTIPLIER',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'MINE_EFFECT_MULTIPLIER',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"MIN_TEAM_NAME_LENGTH"`.
- */
-export function useTeamNumChangerMinTeamNameLength<
-  TFunctionName extends 'MIN_TEAM_NAME_LENGTH',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'MIN_TEAM_NAME_LENGTH',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"REFUND_COST"`.
- */
-export function useTeamNumChangerRefundCost<
-  TFunctionName extends 'REFUND_COST',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'REFUND_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"REPLACEMENT_COST"`.
- */
-export function useTeamNumChangerReplacementCost<
-  TFunctionName extends 'REPLACEMENT_COST',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'REPLACEMENT_COST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"XIST"`.
- */
-export function useTeamNumChangerXist<
-  TFunctionName extends 'XIST',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'XIST',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"addressRegistrar"`.
- */
-export function useTeamNumChangerAddressRegistrar<
-  TFunctionName extends 'addressRegistrar',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'addressRegistrar',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"teamActionsCount"`.
- */
-export function useTeamNumChangerTeamActionsCount<
-  TFunctionName extends 'teamActionsCount',
-  TSelectData = ReadContractResult<typeof teamNumChangerABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<typeof teamNumChangerABI, TFunctionName, TSelectData>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: teamNumChangerABI,
-    functionName: 'teamActionsCount',
-    ...config,
-  } as UseContractReadConfig<
-    typeof teamNumChangerABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link teamNumChangerABI}__.
- */
-export function useTeamNumChangerWrite<
-  TFunctionName extends string,
+export function useTokenPullerPullTokenFromContract<
   TMode extends WriteContractMode = undefined,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof teamNumChangerABI,
-          string
+          typeof tokenPullerABI,
+          'pullTokenFromContract'
         >['request']['abi'],
-        TFunctionName,
+        'pullTokenFromContract',
         TMode
-      >
-    : UseContractWriteConfig<typeof teamNumChangerABI, TFunctionName, TMode> & {
-        abi?: never
-      } = {} as any,
-) {
-  return useContractWrite<typeof teamNumChangerABI, TFunctionName, TMode>({
-    abi: teamNumChangerABI,
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"changeTeamNumber"`.
- */
-export function useTeamNumChangerChangeTeamNumber<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof teamNumChangerABI,
-          'changeTeamNumber'
-        >['request']['abi'],
-        'changeTeamNumber',
-        TMode
-      > & { functionName?: 'changeTeamNumber' }
+      > & { functionName?: 'pullTokenFromContract' }
     : UseContractWriteConfig<
-        typeof teamNumChangerABI,
-        'changeTeamNumber',
+        typeof tokenPullerABI,
+        'pullTokenFromContract',
         TMode
       > & {
         abi?: never
-        functionName?: 'changeTeamNumber'
+        functionName?: 'pullTokenFromContract'
       } = {} as any,
 ) {
-  return useContractWrite<typeof teamNumChangerABI, 'changeTeamNumber', TMode>({
-    abi: teamNumChangerABI,
-    functionName: 'changeTeamNumber',
+  return useContractWrite<
+    typeof tokenPullerABI,
+    'pullTokenFromContract',
+    TMode
+  >({
+    abi: tokenPullerABI,
+    functionName: 'pullTokenFromContract',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"placePixelsHook"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link tokenPullerABI}__.
  */
-export function useTeamNumChangerPlacePixelsHook<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof teamNumChangerABI,
-          'placePixelsHook'
-        >['request']['abi'],
-        'placePixelsHook',
-        TMode
-      > & { functionName?: 'placePixelsHook' }
-    : UseContractWriteConfig<
-        typeof teamNumChangerABI,
-        'placePixelsHook',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'placePixelsHook'
-      } = {} as any,
-) {
-  return useContractWrite<typeof teamNumChangerABI, 'placePixelsHook', TMode>({
-    abi: teamNumChangerABI,
-    functionName: 'placePixelsHook',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link teamNumChangerABI}__.
- */
-export function usePrepareTeamNumChangerWrite<TFunctionName extends string>(
+export function usePrepareTokenPullerWrite<TFunctionName extends string>(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof teamNumChangerABI, TFunctionName>,
+    UsePrepareContractWriteConfig<typeof tokenPullerABI, TFunctionName>,
     'abi'
   > = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: teamNumChangerABI,
+    abi: tokenPullerABI,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof teamNumChangerABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof tokenPullerABI, TFunctionName>)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"changeTeamNumber"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"placePixelsHook"`.
  */
-export function usePrepareTeamNumChangerChangeTeamNumber(
+export function usePrepareTokenPullerPlacePixelsHook(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof teamNumChangerABI, 'changeTeamNumber'>,
+    UsePrepareContractWriteConfig<typeof tokenPullerABI, 'placePixelsHook'>,
     'abi' | 'functionName'
   > = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: teamNumChangerABI,
-    functionName: 'changeTeamNumber',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof teamNumChangerABI,
-    'changeTeamNumber'
-  >)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link teamNumChangerABI}__ and `functionName` set to `"placePixelsHook"`.
- */
-export function usePrepareTeamNumChangerPlacePixelsHook(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof teamNumChangerABI, 'placePixelsHook'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: teamNumChangerABI,
+    abi: tokenPullerABI,
     functionName: 'placePixelsHook',
     ...config,
+  } as UsePrepareContractWriteConfig<typeof tokenPullerABI, 'placePixelsHook'>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link tokenPullerABI}__ and `functionName` set to `"pullTokenFromContract"`.
+ */
+export function usePrepareTokenPullerPullTokenFromContract(
+  config: Omit<
+    UsePrepareContractWriteConfig<
+      typeof tokenPullerABI,
+      'pullTokenFromContract'
+    >,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return usePrepareContractWrite({
+    abi: tokenPullerABI,
+    functionName: 'pullTokenFromContract',
+    ...config,
   } as UsePrepareContractWriteConfig<
-    typeof teamNumChangerABI,
-    'placePixelsHook'
+    typeof tokenPullerABI,
+    'pullTokenFromContract'
   >)
 }
 
