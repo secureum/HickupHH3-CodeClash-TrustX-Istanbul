@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "anvil": "source .env && anvil -m \"$ANVIL_MNEMONIC\" --fork-url $ANVIL_FORK_URL --block-time 12",
-    "build": "bun run wagmi && next build",
+    "build": "yarn run wagmi && next build",
     "deploy:contract": "source .env && forge script contracts/script/Deploy.s.sol --rpc-url $FORGE_RPC_URL --broadcast --slow",
-    "dev": "bun run wagmi && next dev",
-    "dev:foundry": "bun run dev & wagmi generate --watch & bun run anvil",
+    "dev": "yarn run wagmi && next dev",
+    "dev:foundry": "yarn run dev & wagmi generate --watch & yarn run anvil",
     "start": "next start",
     "lint": "next lint",
     "wagmi": "wagmi generate"
