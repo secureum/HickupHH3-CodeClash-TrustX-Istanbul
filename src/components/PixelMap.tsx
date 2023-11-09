@@ -105,9 +105,9 @@ function fetchAndFilterData(): {
             BigInt(-1) :
             BigInt(minerTeamNumbers![uniqueMiners.indexOf(pixel.miner)])
 
-        const minerTeamName = (minerTeamNumber == BigInt(-1) || uniqueTeamNumbers.indexOf(minerTeamNumber) == -1) ?
+        const minerTeamName = (minerTeamNumber == BigInt(-1) || uniqueTeamNumbers.indexOf(Number(minerTeamNumber)) == -1) ?
             '-' :
-            teamNames![uniqueTeamNumbers.indexOf(minerTeamNumber)]
+            teamNames![uniqueTeamNumbers.indexOf(Number(minerTeamNumber))]
 
         return {
             ...pixel,
@@ -223,9 +223,9 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
                 <caption>Top Painters</caption>
                 <thead>
                     <tr>
-                        <th style={{ width: '40%' }}>Team</th>
+                        <th style={{ width: '45%' }}>Team</th>
                         <th>Count</th>
-                        <th style={{ width: '40%' }}>Pixels</th>
+                        <th style={{ width: '45%' }}>Pixels</th>
                     </tr> 
                 </thead>
                 <tbody>
@@ -254,9 +254,9 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
                 <caption>Top Miner Teams</caption>
                 <thead>
                     <tr>
-                        <th style={{ width: '40%' }}>Team</th>
+                        <th style={{ width: '45%' }}>Team</th>
                         <th>Count</th>
-                        <th style={{ width: '40%' }}>Pixels</th>
+                        <th style={{ width: '45%' }}>Pixels</th>
                     </tr> 
                 </thead>
                 <tbody>
@@ -284,7 +284,7 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
                     <tr>
                         <th>Address</th>
                         <th>Team</th>
-                        <th>Count</th>
+                        <th style={{ width: '10%' }}>Count</th>
                         <th>Pixels</th>
                     </tr> 
                 </thead>
@@ -308,12 +308,8 @@ function extractScorers(pixels: Pixel[], countType: number) {
     const teamCounts = countOccurrences(pixels, countType);
     const sortedTeamCounts = teamCounts.sort((a, b) => b.count - a.count);
     // filter out team number -1 & null address
-    // for painting, we also filter out team number 0 (initial state)
     const filteredScorers = sortedTeamCounts.filter((team) => team.miner !== NULL_ADDRESS && team.number != BigInt(-1));
-    const scorers = countType === 0 ?
-        filteredScorers.filter((team) => team.number != BigInt(0)) :
-        filteredScorers;
-    return {scorers}
+    return {scorers: filteredScorers}
 }
 
 function countOccurrences(arr: Pixel[], countType: number): { miner: string, number: bigint; name: string; count: number; indices: number[] }[] {
