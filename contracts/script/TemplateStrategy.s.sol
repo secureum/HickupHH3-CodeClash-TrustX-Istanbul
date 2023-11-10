@@ -11,7 +11,7 @@ contract StrategyScript is Script {
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
-        uint16 teamNum = 1;
+        uint16 teamNum = 10;
         string memory teamName = "TEMPLATE";
         TemplateStrategy strategy = new TemplateStrategy(teamNum, teamName);
         console.log("strategy addr:", address(strategy));

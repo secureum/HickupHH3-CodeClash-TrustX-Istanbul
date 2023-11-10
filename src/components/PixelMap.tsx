@@ -40,6 +40,7 @@ export function PixelMap() {
 
   return (
     <Sheet className="pt-2">
+        <Typography level="h1" color="primary">CodeClash: Pixel Wars</Typography>
         <Grid container direction="row" justifyContent="space-between" alignItems="baseline" spacing={1}>
             <Countdowns
                 epoch={epochNum}
@@ -88,14 +89,6 @@ function fetchAndFilterData(): {
 
     // call useIPixelsMapGetTeamNames to get all color team names
     let { data: teamNames, isLoading: teamNamesLoading } = useIPixelsMapGetTeamNames({args: [uniqueTeamNumbers]});
-    if (mapLoading || teamNumbersLoading || teamNamesLoading || blockNumLoading || mintInfoLoading || gameTimeLoading) return {
-        pixelMap: [],
-        epochNum: BigInt(0),
-        epochMintsRemaining: BigInt(0),
-        totalMintsRemaining: BigInt(0),
-        endTime: endTime || BigInt(-1),
-        isLoading: true
-    }
 
     // finally, map pixels and store as expanded Pixel[]
     return { pixelMap: pixelMap!.map((pixel, index) => {
@@ -117,10 +110,10 @@ function fetchAndFilterData(): {
             minerTeamName
         }
         }),
-        epochNum: remainingMintEpochInfo![0],
-        epochMintsRemaining: remainingMintEpochInfo![1],
-        totalMintsRemaining: remainingMintEpochInfo![2],
-        endTime: endTime!,
+        epochNum: remainingMintEpochInfo === undefined ? BigInt(0) : remainingMintEpochInfo[0],
+        epochMintsRemaining: remainingMintEpochInfo === undefined ? BigInt(0) : remainingMintEpochInfo[1],
+        totalMintsRemaining: remainingMintEpochInfo === undefined ? BigInt(0) : remainingMintEpochInfo[2],
+        endTime: endTime === undefined ? BigInt(0) : endTime,
         isLoading: false
     }
 }
@@ -155,7 +148,7 @@ function Countdowns(
     const hours = Math.floor(timeRemaining / 3600);
 
     return(
-        <Grid xs={12} sm={2}>
+        <Grid xs={12} sm={2} lg={2.5}>
             <Typography level="body-lg">Total Mints Left:</Typography>
             <Typography level="h3" variant='outlined' color='warning'>{totalMintsRemaining.toString()}</Typography>
             <Divider />
@@ -178,7 +171,7 @@ function Countdowns(
 
 function DrawPixelMap({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: boolean}) {
     return(
-        <Grid xs={12} sm={6} md={5} lg={6} className='grid grid-cols-8 pixel-map'>
+        <Grid xs={12} sm={6} md={5} className='grid grid-cols-8 pixel-map'>
         {
             isLoading ? 
             <Skeleton loading={isLoading} variant="overlay"></Skeleton> :
@@ -223,15 +216,15 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
                 <caption>Top Painters</caption>
                 <thead>
                     <tr>
-                        <th style={{ width: '45%' }}>Team</th>
+                        <th style={{ width: '43%' }}>Team</th>
                         <th>Count</th>
-                        <th style={{ width: '45%' }}>Pixels</th>
+                        <th style={{ width: '43%' }}>Pixels</th>
                     </tr> 
                 </thead>
                 <tbody>
                     {topPainters.map((team) => (
                         <tr key={`painter` + team.number}>
-                            <td>{team.name + ` (Team ${team.number.toString()})`}</td>
+                            <td>{team.name + ` (#${team.number.toString()})`}</td>
                             <td>{team.count}</td>
                             <td>{team.indices.join(', ')}</td>
                         </tr>
@@ -254,15 +247,15 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
                 <caption>Top Miner Teams</caption>
                 <thead>
                     <tr>
-                        <th style={{ width: '45%' }}>Team</th>
+                        <th style={{ width: '43%' }}>Team</th>
                         <th>Count</th>
-                        <th style={{ width: '45%' }}>Pixels</th>
+                        <th style={{ width: '43%' }}>Pixels</th>
                     </tr> 
                 </thead>
                 <tbody>
                     {topMinerTeams.map((team) => (
                         <tr key={`minerTeam` + team.number}>
-                            <td>{team.name + ` (Team ${team.number.toString()})`}</td>
+                            <td>{team.name + ` (#${team.number.toString()})`}</td>
                             <td>{team.count}</td>
                             <td>{team.indices.join(', ')}</td>
                         </tr>
@@ -284,7 +277,7 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
                     <tr>
                         <th>Address</th>
                         <th>Team</th>
-                        <th style={{ width: '10%' }}>Count</th>
+                        <th style={{ width: '15%' }}>Count</th>
                         <th>Pixels</th>
                     </tr> 
                 </thead>
@@ -292,7 +285,7 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
                     {topMinerAddrs.map((team) => (
                         <tr key={`miner` + team.miner}>
                             <td>{team.miner}</td>
-                            <td>{team.name + ` (Team ${team.number.toString()})`}</td>
+                            <td>{team.name + ` (#${team.number.toString()})`}</td>
                             <td>{team.count}</td>
                             <td>{team.indices.join(', ')}</td>
                         </tr>
