@@ -1,148 +1,94 @@
 <script>
-import { initPublicClient, publicClient, loaded, 
+import { 
+  initPublicClient, publicClient, loaded, 
   epochNum,epochMintsRemaining,totalMintsRemaining, colors,
-  fetchData } from './lib/store';
+  fetchData 
+} from './lib/store';
+import {
+  pixels, teamNames, loadPixeles
+} from './lib/storePixels';
 
-  import { parseAbiItem } from 'viem' 
+import { parseAbiItem } from 'viem' 
 
-  import { onMount } from 'svelte';
+import { onMount } from 'svelte';
 import { toast } from '@zerodevx/svelte-toast'
 
-import { PixelsMap, Xist, contractAddresses } from './interface'
+import { Xist, contractAddresses } from './interface'
+import RenderPixelData from './lib/RenderPixelData.svelte';
+import Countdown from './lib/Countdown.svelte';
 
+let selectedPixel = -1;
+let focusPixel = -1;
+let gameEndTime = 0n;
 
-  let selectedPixel = -1;
-  let focusPixel = -1;
-  let gameEndTime = 0n;
-  let now = +(new Date());
-  let countDown = '00:00:00';
+let showPixelNumber = false;
 
-  let basePixels = new Array(64)
-  let showPixelNumber = false;
+let selected = null;
+$: if(selectedPixel > -1) {
+  selected = {...$pixels[selectedPixel], pixel: selectedPixel};
+} else if(focusPixel > -1) {
+  selected = {...$pixels[focusPixel], pixel: focusPixel};
+} else {
+  selected = null;
+}
 
-  let teamNames = {};
-
-  $: delta = Math.round(Number(gameEndTime) - (now / 1000));
-
-  $: if(delta > 0) {
-    let leftover = delta
-    let days = Math.floor(leftover / (3600 * 24));
-    leftover = leftover - (days * 3600 * 24);
-    let hours = Math.floor(leftover / 3600);
-    leftover = leftover - (hours * 3600);
-    let minutes = Math.floor(leftover / 60);
-    leftover = leftover - (minutes * 60);
-    let seconds = leftover;
-    countDown ='';
-    if(days>0){
-      countDown = `${days} days, `;
-      if (hours>0) countDown += `${hours} hours, `;
-      if(minutes>0) countDown += `${minutes} minutes, `;
-      countDown += `${seconds} seconds`;
-    } else {
-      countDown = `${hours}:${minutes}:${seconds}`;
-    }
-  } else {
-    countDown = 'Game Over'
+$: topPainters = Object.keys(colors).filter(k => k > 0).map((k) => {
+  return {
+    teamNumber: k,
+    count: $pixels.filter((e) => e && e.colorTeamNumber == k).length,
+    pixels: $pixels.filter((e) => e && e.colorTeamNumber == k).map((e, i) => i).join(', ')
   }
+}).sort((a,b) => b.count - a.count).slice(0, 10).filter(k => k.count > 0 );
 
-  $: selected = basePixels[selectedPixel];
 
-  $: topPainters = Object.keys(colors).filter(k => k > 0).map((k) => {
-    return {
-      teamNumber: k,
-      count: basePixels.filter((e) => e && e.colorTeamNumber == k).length,
-      pixels: basePixels.filter((e) => e && e.colorTeamNumber == k).map((e, i) => i).join(', ')
+onMount(async () => {
+  initPublicClient();
+  
+  await fetchData(await $publicClient.getBlockNumber());
+
+  // this reads can be groups in a multicall
+  gameEndTime = await $publicClient.readContract({
+    address: contractAddresses.XIST,
+    abi: Xist,
+    functionName: 'gameEndTime',
+  });
+  
+  await loadPixeles();
+
+  $publicClient.watchBlockNumber({ onBlockNumber: (n) => {
+    fetchData(n);
+  }})
+
+  $loaded = true;
+
+
+  $publicClient.watchEvent({
+    address: contractAddresses.XIST,
+    event: parseAbiItem('event Transfer(address indexed from, address indexed to, uint256 value)'), 
+    onLogs: logs => {
+      logs.forEach((l) => {
+        if (l.args.from == "0x0000000000000000000000000000000000000000" && l.args.to !== contractAddresses.pixelsMap){
+          // new team
+          // use addressRegistrar(l.arfs.to) to know the team number
+          
+          toast.push('New team registered!');
+        } else if(l.args.to == contractAddresses.pixelsMap) {
+          loadPixeles();
+        }
+      })
+      logs.filter((l) => {
+        return l.args.from == "0x0000000000000000000000000000000000000000"
+      })
+      // console.log(logs)
     }
-  }).sort((a,b) => b.count - a.count).slice(0, 10).filter(k => k.count > 0 );
-
-  async function loadPixeles() {
-    const blocks = await $publicClient.readContract({
-      address: contractAddresses.pixelsMap,
-      abi: PixelsMap,
-      functionName: 'getRangePixelData',
-      args: [0n, 64n]
-    });
-
-    blocks.forEach((e, i) => {
-      basePixels[i] = e
-    });
-    const teamNumbers = [...new Set(
-      blocks.map((e) => e.colorTeamNumber).filter(teamN => teamN != 0)
-    )];
-
-    const _names = await $publicClient.readContract({
-      address: contractAddresses.pixelsMap,
-      abi: PixelsMap,
-      functionName: 'getTeamNames',
-      args: [teamNumbers]
-    });
-
-    teamNumbers.forEach((e, i) => {
-      teamNames[e] = _names[i];
-    });
-
-    teamNames = {...teamNames};
-  }
-
-  onMount(async () => {
-    initPublicClient();
-    
-    await fetchData(await $publicClient.getBlockNumber());
-        
-
-    // this reads can be groups in a multicall
-    gameEndTime = await $publicClient.readContract({
-      address: contractAddresses.XIST,
-      abi: Xist,
-      functionName: 'gameEndTime',
-    });
-    
-    await loadPixeles();
-
-
-    $publicClient.watchBlockNumber({ onBlockNumber: (n) => {
-      fetchData(n);
-    }})
-
-    setInterval(() => {
-      now = +(new Date());
-    }, 1000)
-    $loaded = true;
-
-
-    $publicClient.watchEvent({
-      address: contractAddresses.XIST,
-      event: parseAbiItem('event Transfer(address indexed from, address indexed to, uint256 value)'), 
-      onLogs: logs => {
-        logs.forEach((l) => {
-          if (l.args.from == "0x0000000000000000000000000000000000000000" && l.args.to !== contractAddresses.pixelsMap){
-            // new team
-            // use addressRegistrar(l.arfs.to) to know the team number
-            
-            toast.push('New team registered!');
-          } else if(l.args.to == contractAddresses.pixelsMap) {
-            loadPixeles();
-          }
-        })
-        logs.filter((l) => {
-          return l.args.from == "0x0000000000000000000000000000000000000000"
-        })
-        // console.log(logs)
-      }
-    })
-
-
   })
+})
 
-  /*
-   */
 </script>
 
 <h1 class="mx-auto text-4xl text-center mt-2 mb-6">Welcome to CodeClash</h1>
 
-
-<div class="flex justify-between">
+<div class="flex flex-row justify-between">
   <div class="w-1/5 mx-2">
     <div class="mt-5 flex justify-between border-b">
       <span>Total Mints Left:</span> 
@@ -171,7 +117,7 @@ import { PixelsMap, Xist, contractAddresses } from './interface'
     <div class="mt-5 flex flex-col justify-between border-b ">
       <span>Game ends in:</span>
       {#if $loaded}
-        <b>{countDown}</b>
+          <Countdown {gameEndTime} />
       {:else}
         <div class="animate-pulse rounded mt-0.5 h-5 block bg-slate-200 w-30"></div>
       {/if}
@@ -200,11 +146,13 @@ import { PixelsMap, Xist, contractAddresses } from './interface'
 
   <div class="flex flex-col justify-center w-3/5">
     <div class="pixel-art-container" class:loading={!$loaded}>
-      {#each basePixels as e,i}
+      {#each $pixels as e,i}
         <div 
           style="background-color: {(e ? colors[e.color] : '#ffffff')}"
           class:text-transparent={!showPixelNumber} 
           class:selected={i == selectedPixel} 
+        on:mouseenter={() => { if($loaded) focusPixel = i}}
+        on:mouseleave={() => { if($loaded) focusPixel = -1}}
         on:click={() => { if($loaded) selectedPixel = i == selectedPixel ? -1 : i}}>{i}</div>    
       {/each}
     </div>
@@ -213,24 +161,8 @@ import { PixelsMap, Xist, contractAddresses } from './interface'
       Show Pixel Number
     </label>
     
-    {#if $loaded && (selectedPixel != -1 || focusPixel != -1)}
-      <div class="w-[350px] mx-auto">
-        <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-          <div class="flex space-x-4">
-            <div class="rounded-full bg-slate-200 h-10 w-10"></div>
-            <div class="flex-1">
-                <div class="flex flex-col">
-                  <div>Pixel #{selectedPixel}</div>
-                  <div class="text-sm">Miner: {selected.miner}</div>
-                  <div class="text-sm">Instances overwritten: {selected.numMinerInstancesOverwritten}</div>
-                  <div class="text-sm">Color Instances Overwritten: {selected.numColorInstancesOverwritten}</div>
-                  <div class="text-sm">Team Number: {selected.colorTeamNumber}</div>
-                  <div class="text-sm">Color: {selected.color}</div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    {#if $loaded && selected}
+      <RenderPixelData {selected} />
     {/if}
   </div>
   <div class="w-1/5 mx-2">
@@ -249,7 +181,7 @@ import { PixelsMap, Xist, contractAddresses } from './interface'
           <tbody>
             {#each topPainters as e}
               <tr>
-                <td class="border border-slate-300"><b>#{e.teamNumber}</b> {teamNames[e.teamNumber]}</td>
+                <td class="border border-slate-300"><b>#{e.teamNumber}</b> {$teamNames[e.teamNumber]}</td>
                 <td class="border border-slate-300">{e.count}</td>
                 <td class="border border-slate-300">{e.pixels}</td>
               </tr>
