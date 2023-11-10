@@ -14,15 +14,15 @@
   },
   "type": "module",
   "dependencies": {
-    "@wagmi/core": "^1.4.5",
+    "@wagmi/core": "^1.4.6",
     "@zerodevx/svelte-toast": "^0.9.5",
-    "viem": "^1.18.4"
+    "viem": "^1.18.9"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^2.1.1",
-    "@sveltejs/kit": "^1.27.3",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "@typescript-eslint/parser": "^6.9.1",
+    "@sveltejs/kit": "^1.27.4",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.53.0",
     "eslint-plugin-svelte3": "^4.0.0",

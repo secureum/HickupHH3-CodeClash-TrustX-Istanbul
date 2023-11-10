@@ -48,3 +48,4 @@ next-env.d.ts
 # forge
 out
 cache
+/.svelte-kit/
