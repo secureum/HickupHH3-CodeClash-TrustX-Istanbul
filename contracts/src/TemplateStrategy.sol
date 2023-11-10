@@ -4,15 +4,20 @@ pragma solidity ^0.8.19;
 import {IPixelsMap} from "./IPixelsMap.sol";
 import {X_IST} from "./X_IST.sol";
 
-contract Boilerplate {
+contract TemplateStrategy {
     X_IST XIST = X_IST(0x148412086B279215e2F7feC41A912cBcE4B4c37f);
-    IPixelsMap map = IPixelsMap(0x6221F25bA49CA8d8cc42AFCDd04BB7f22e6758C6);
+    IPixelsMap map = IPixelsMap(0xe361Bfe39De988e20aC453485731497F20e3EA03);
 
     // registration
-    constructor(uint8 teamNum, string memory teamName) {
+    constructor(uint16 teamNum, string memory teamName) {
         map.register(teamNum);
         map.setTeamName(teamName);
         XIST.approve(address(map), type(uint256).max);
+        uint8[] memory pixels = new uint8[](1);
+        pixels[0] = 10;
+        uint8[] memory colors = new uint8[](1);
+        colors[0] = 12;
+        map.placePixels(pixels, colors, false, "");
     }
 
     function drawPixels(

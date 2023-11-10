@@ -37,6 +37,7 @@ export function PixelMap() {
         _pixelMap[index] = pixel;
     })
   }
+
   return (
     <Sheet className="pt-2">
         <Grid container direction="row" justifyContent="space-between" alignItems="baseline" spacing={1}>
@@ -50,7 +51,6 @@ export function PixelMap() {
             <ScoringTables pixelMap={_pixelMap as Pixel[]} isLoading={isLoading}/>
         </Grid>
     </Sheet>
-    
   )
 }
 
@@ -72,7 +72,7 @@ function fetchAndFilterData(): {
     //// PIXEL MAP DATA ///
     ///////////////////////
     // fetch pixel map
-    let { data: pixelMap, isLoading: mapLoading } = useIPixelsMapGetRangePixelData({ args: [0, 64], watch: true })
+    let { data: pixelMap, isLoading: mapLoading } = useIPixelsMapGetRangePixelData({watch: true, args: [0, 64]})
     
     // iterate pixelMap and store array of non-duplicates (excluding null)
     const uniqueMiners = [...new Set(pixelMap?.map(pixel => pixel.miner).filter(miner => miner !== NULL_ADDRESS))];

@@ -3,7 +3,7 @@
 
 Come create an art piece on a 8x8 pixel map canvas for TrustX Istanbul! Register as an individual or team, then start placing pixel colours!
 
-## Sepolia Deployment
+## Contract Addresses (Sepolia)
 - `PixelsMap`: ``
 - `X_IST`: ``
 
@@ -13,7 +13,7 @@ Come create an art piece on a 8x8 pixel map canvas for TrustX Istanbul! Register
 First, join a team by calling `register(uint16 teamNumber)`. Largest team number is 1000 (ie. max 1000 teams). Then, set the team name (minimum of 5 characters) if it isn't already set by other team members by calling `setTeamName(string teamName)`.
 
 ### Placing Pixels
-Call `placePixels(uint8[] pixels, uint8[] colors, false, "")` where the pixels are the pixel(s) you'd like to draw on, with the corresponding color(s). Please refer to the [colour section](#Colors) for the available colors.
+Call `placePixels(uint8[] pixels, uint8[] colors, false, "")` where the pixels are the pixel(s) you'd like to draw on, with the corresponding color(s). Please refer to the [colour section](#Colours) for the available colors.
 
 ### Placing Mines
 Mining a pixel entitles the miner to receive 2x X_IST payable by the next caller on that pixel. Call `placeMines(uint8[] pixels)` to place mines on specified pixels.
@@ -65,9 +65,11 @@ Miner payments and refunds are subject to the available funds held by the `Pixel
 | `15` | `#000000` | <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/000000'/></a> |
 
 ## Award Categories
-- Banksy: Team that paints the most pixels
-- Justin Sun: Wallet holding the most X_IST tokens
-- Samczsun: Most creative exploit
+- Banksy: Team that paints the most pixels. Banksy's iconic street art is known for its bold statements and visually striking designs. Channel your inner Banksy and make your mark on the digital canvas!
+  
+- Justin Sun: Wallet holding the most X_IST tokens. Just like Justin Sun's strategic moves in the crypto world, accumulate the most X_IST tokens to secure your place as a PixelWars champion. The more tokens, the brighter your pixel legacy!
+
+- Samczsun: Most creative exploit. Samczsun is renowned for his prowess in uncovering vulnerabilities and exploits. Get creative with your pixel artistry and showcase the most imaginative exploit on the canvas. Unleash your ingenuity in the pixel realm!
 
 ## Build Framework
 [Next.js](https://nextjs.org) + [Foundry](https://book.getfoundry.sh/) + [wagmi](https://wagmi.sh) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)

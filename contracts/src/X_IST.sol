@@ -37,7 +37,7 @@ contract X_IST is ERC20 {
     /// also mints 2x amount to pixelMap
     function mint(address to) external {
         require(msg.sender == pixelsMap, "unauthorized");
-        require(block.timestamp < gameStartTime, "too early");
+        require(block.timestamp >= gameStartTime, "too early");
         if (++numMints > MAX_TOTAL_MINTS || ++mintsInEpoch[block.number / EPOCH_PERIOD] > MAX_MINTS_PER_EPOCH) return;
         // calculate random amount to mint
         uint256 seed = uint256(keccak256(abi.encodePacked(to, block.number)));
