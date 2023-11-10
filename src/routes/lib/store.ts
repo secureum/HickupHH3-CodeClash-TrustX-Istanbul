@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 import { createPublicClient, http} from 'viem'
-import { mainnet, foundry } from 'viem/chains'
+import { sepolia, foundry } from 'viem/chains'
 
 import { Xist, contractAddresses } from '../interface'
 
@@ -17,8 +17,7 @@ export function initPublicClient() {
   if (_publicClient) return _publicClient;
 
   const client = createPublicClient({
-    chain: foundry,
-    mode: 'anvil',
+    chain: sepolia,
     transport: http(),
   });
 
