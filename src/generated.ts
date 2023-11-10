@@ -1,10 +1,10 @@
 import {
+  useContractRead,
+  UseContractReadConfig,
   useContractWrite,
   UseContractWriteConfig,
   usePrepareContractWrite,
   UsePrepareContractWriteConfig,
-  useContractRead,
-  UseContractReadConfig,
   useContractEvent,
   UseContractEventConfig,
   useNetwork,
@@ -12,61 +12,10 @@ import {
   Address,
 } from 'wagmi'
 import {
+  ReadContractResult,
   WriteContractMode,
   PrepareWriteContractResult,
-  ReadContractResult,
 } from 'wagmi/actions'
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Boilerplate
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export const boilerplateABI = [
-  {
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-    inputs: [
-      { name: 'teamNum', internalType: 'uint8', type: 'uint8' },
-      { name: 'teamName', internalType: 'string', type: 'string' },
-    ],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: 'colors', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: 'data', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'drawPixels',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' }],
-    name: 'placeMines',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
-      { name: 'data', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'placePixelsHook',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' }],
-    name: 'resetPixels',
-    outputs: [],
-  },
-] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ERC20
@@ -660,8 +609,8 @@ export const iPixelsMapABI = [
  *
  */
 export const iPixelsMapAddress = {
-  11791: '0x6221F25bA49CA8d8cc42AFCDd04BB7f22e6758C6',
-  31337: '0x6221F25bA49CA8d8cc42AFCDd04BB7f22e6758C6',
+  11791: '0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7',
+  31337: '0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7',
 } as const
 
 /**
@@ -923,6 +872,57 @@ export const pixelsMapABI = [
 ] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// TemplateStrategy
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const templateStrategyABI = [
+  {
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+    inputs: [
+      { name: 'teamNum', internalType: 'uint16', type: 'uint16' },
+      { name: 'teamName', internalType: 'string', type: 'string' },
+    ],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' },
+      { name: 'colors', internalType: 'uint8[]', type: 'uint8[]' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'drawPixels',
+    outputs: [],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' }],
+    name: 'placeMines',
+    outputs: [],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
+      { name: '', internalType: 'uint8[]', type: 'uint8[]' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'placePixelsHook',
+    outputs: [],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'pixels', internalType: 'uint8[]', type: 'uint8[]' }],
+    name: 'resetPixels',
+    outputs: [],
+  },
+] as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // X_IST
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1178,223 +1178,6 @@ export const xIstConfig = { address: xIstAddress, abi: xIstABI } as const
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // React
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link boilerplateABI}__.
- */
-export function useBoilerplateWrite<
-  TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof boilerplateABI,
-          string
-        >['request']['abi'],
-        TFunctionName,
-        TMode
-      >
-    : UseContractWriteConfig<typeof boilerplateABI, TFunctionName, TMode> & {
-        abi?: never
-      } = {} as any,
-) {
-  return useContractWrite<typeof boilerplateABI, TFunctionName, TMode>({
-    abi: boilerplateABI,
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"drawPixels"`.
- */
-export function useBoilerplateDrawPixels<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof boilerplateABI,
-          'drawPixels'
-        >['request']['abi'],
-        'drawPixels',
-        TMode
-      > & { functionName?: 'drawPixels' }
-    : UseContractWriteConfig<typeof boilerplateABI, 'drawPixels', TMode> & {
-        abi?: never
-        functionName?: 'drawPixels'
-      } = {} as any,
-) {
-  return useContractWrite<typeof boilerplateABI, 'drawPixels', TMode>({
-    abi: boilerplateABI,
-    functionName: 'drawPixels',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"placeMines"`.
- */
-export function useBoilerplatePlaceMines<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof boilerplateABI,
-          'placeMines'
-        >['request']['abi'],
-        'placeMines',
-        TMode
-      > & { functionName?: 'placeMines' }
-    : UseContractWriteConfig<typeof boilerplateABI, 'placeMines', TMode> & {
-        abi?: never
-        functionName?: 'placeMines'
-      } = {} as any,
-) {
-  return useContractWrite<typeof boilerplateABI, 'placeMines', TMode>({
-    abi: boilerplateABI,
-    functionName: 'placeMines',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"placePixelsHook"`.
- */
-export function useBoilerplatePlacePixelsHook<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof boilerplateABI,
-          'placePixelsHook'
-        >['request']['abi'],
-        'placePixelsHook',
-        TMode
-      > & { functionName?: 'placePixelsHook' }
-    : UseContractWriteConfig<
-        typeof boilerplateABI,
-        'placePixelsHook',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'placePixelsHook'
-      } = {} as any,
-) {
-  return useContractWrite<typeof boilerplateABI, 'placePixelsHook', TMode>({
-    abi: boilerplateABI,
-    functionName: 'placePixelsHook',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"resetPixels"`.
- */
-export function useBoilerplateResetPixels<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof boilerplateABI,
-          'resetPixels'
-        >['request']['abi'],
-        'resetPixels',
-        TMode
-      > & { functionName?: 'resetPixels' }
-    : UseContractWriteConfig<typeof boilerplateABI, 'resetPixels', TMode> & {
-        abi?: never
-        functionName?: 'resetPixels'
-      } = {} as any,
-) {
-  return useContractWrite<typeof boilerplateABI, 'resetPixels', TMode>({
-    abi: boilerplateABI,
-    functionName: 'resetPixels',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link boilerplateABI}__.
- */
-export function usePrepareBoilerplateWrite<TFunctionName extends string>(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof boilerplateABI, TFunctionName>,
-    'abi'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: boilerplateABI,
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof boilerplateABI, TFunctionName>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"drawPixels"`.
- */
-export function usePrepareBoilerplateDrawPixels(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof boilerplateABI, 'drawPixels'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: boilerplateABI,
-    functionName: 'drawPixels',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof boilerplateABI, 'drawPixels'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"placeMines"`.
- */
-export function usePrepareBoilerplatePlaceMines(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof boilerplateABI, 'placeMines'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: boilerplateABI,
-    functionName: 'placeMines',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof boilerplateABI, 'placeMines'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"placePixelsHook"`.
- */
-export function usePrepareBoilerplatePlacePixelsHook(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof boilerplateABI, 'placePixelsHook'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: boilerplateABI,
-    functionName: 'placePixelsHook',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof boilerplateABI, 'placePixelsHook'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link boilerplateABI}__ and `functionName` set to `"resetPixels"`.
- */
-export function usePrepareBoilerplateResetPixels(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof boilerplateABI, 'resetPixels'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: boilerplateABI,
-    functionName: 'resetPixels',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof boilerplateABI, 'resetPixels'>)
-}
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link erc20ABI}__.
@@ -3752,6 +3535,247 @@ export function usePreparePixelsMapSetTeamName(
     functionName: 'setTeamName',
     ...config,
   } as UsePrepareContractWriteConfig<typeof pixelsMapABI, 'setTeamName'>)
+}
+
+/**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link templateStrategyABI}__.
+ */
+export function useTemplateStrategyWrite<
+  TFunctionName extends string,
+  TMode extends WriteContractMode = undefined,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof templateStrategyABI,
+          string
+        >['request']['abi'],
+        TFunctionName,
+        TMode
+      >
+    : UseContractWriteConfig<
+        typeof templateStrategyABI,
+        TFunctionName,
+        TMode
+      > & {
+        abi?: never
+      } = {} as any,
+) {
+  return useContractWrite<typeof templateStrategyABI, TFunctionName, TMode>({
+    abi: templateStrategyABI,
+    ...config,
+  } as any)
+}
+
+/**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"drawPixels"`.
+ */
+export function useTemplateStrategyDrawPixels<
+  TMode extends WriteContractMode = undefined,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof templateStrategyABI,
+          'drawPixels'
+        >['request']['abi'],
+        'drawPixels',
+        TMode
+      > & { functionName?: 'drawPixels' }
+    : UseContractWriteConfig<
+        typeof templateStrategyABI,
+        'drawPixels',
+        TMode
+      > & {
+        abi?: never
+        functionName?: 'drawPixels'
+      } = {} as any,
+) {
+  return useContractWrite<typeof templateStrategyABI, 'drawPixels', TMode>({
+    abi: templateStrategyABI,
+    functionName: 'drawPixels',
+    ...config,
+  } as any)
+}
+
+/**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"placeMines"`.
+ */
+export function useTemplateStrategyPlaceMines<
+  TMode extends WriteContractMode = undefined,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof templateStrategyABI,
+          'placeMines'
+        >['request']['abi'],
+        'placeMines',
+        TMode
+      > & { functionName?: 'placeMines' }
+    : UseContractWriteConfig<
+        typeof templateStrategyABI,
+        'placeMines',
+        TMode
+      > & {
+        abi?: never
+        functionName?: 'placeMines'
+      } = {} as any,
+) {
+  return useContractWrite<typeof templateStrategyABI, 'placeMines', TMode>({
+    abi: templateStrategyABI,
+    functionName: 'placeMines',
+    ...config,
+  } as any)
+}
+
+/**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"placePixelsHook"`.
+ */
+export function useTemplateStrategyPlacePixelsHook<
+  TMode extends WriteContractMode = undefined,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof templateStrategyABI,
+          'placePixelsHook'
+        >['request']['abi'],
+        'placePixelsHook',
+        TMode
+      > & { functionName?: 'placePixelsHook' }
+    : UseContractWriteConfig<
+        typeof templateStrategyABI,
+        'placePixelsHook',
+        TMode
+      > & {
+        abi?: never
+        functionName?: 'placePixelsHook'
+      } = {} as any,
+) {
+  return useContractWrite<typeof templateStrategyABI, 'placePixelsHook', TMode>(
+    {
+      abi: templateStrategyABI,
+      functionName: 'placePixelsHook',
+      ...config,
+    } as any,
+  )
+}
+
+/**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"resetPixels"`.
+ */
+export function useTemplateStrategyResetPixels<
+  TMode extends WriteContractMode = undefined,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof templateStrategyABI,
+          'resetPixels'
+        >['request']['abi'],
+        'resetPixels',
+        TMode
+      > & { functionName?: 'resetPixels' }
+    : UseContractWriteConfig<
+        typeof templateStrategyABI,
+        'resetPixels',
+        TMode
+      > & {
+        abi?: never
+        functionName?: 'resetPixels'
+      } = {} as any,
+) {
+  return useContractWrite<typeof templateStrategyABI, 'resetPixels', TMode>({
+    abi: templateStrategyABI,
+    functionName: 'resetPixels',
+    ...config,
+  } as any)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link templateStrategyABI}__.
+ */
+export function usePrepareTemplateStrategyWrite<TFunctionName extends string>(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof templateStrategyABI, TFunctionName>,
+    'abi'
+  > = {} as any,
+) {
+  return usePrepareContractWrite({
+    abi: templateStrategyABI,
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof templateStrategyABI, TFunctionName>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"drawPixels"`.
+ */
+export function usePrepareTemplateStrategyDrawPixels(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof templateStrategyABI, 'drawPixels'>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return usePrepareContractWrite({
+    abi: templateStrategyABI,
+    functionName: 'drawPixels',
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof templateStrategyABI, 'drawPixels'>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"placeMines"`.
+ */
+export function usePrepareTemplateStrategyPlaceMines(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof templateStrategyABI, 'placeMines'>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return usePrepareContractWrite({
+    abi: templateStrategyABI,
+    functionName: 'placeMines',
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof templateStrategyABI, 'placeMines'>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"placePixelsHook"`.
+ */
+export function usePrepareTemplateStrategyPlacePixelsHook(
+  config: Omit<
+    UsePrepareContractWriteConfig<
+      typeof templateStrategyABI,
+      'placePixelsHook'
+    >,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return usePrepareContractWrite({
+    abi: templateStrategyABI,
+    functionName: 'placePixelsHook',
+    ...config,
+  } as UsePrepareContractWriteConfig<
+    typeof templateStrategyABI,
+    'placePixelsHook'
+  >)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link templateStrategyABI}__ and `functionName` set to `"resetPixels"`.
+ */
+export function usePrepareTemplateStrategyResetPixels(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof templateStrategyABI, 'resetPixels'>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return usePrepareContractWrite({
+    abi: templateStrategyABI,
+    functionName: 'resetPixels',
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof templateStrategyABI, 'resetPixels'>)
 }
 
 /**

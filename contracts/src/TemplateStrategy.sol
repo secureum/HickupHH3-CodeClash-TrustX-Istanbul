@@ -6,7 +6,7 @@ import {X_IST} from "./X_IST.sol";
 
 contract TemplateStrategy {
     X_IST XIST = X_IST(0x148412086B279215e2F7feC41A912cBcE4B4c37f);
-    IPixelsMap map = IPixelsMap(0xe361Bfe39De988e20aC453485731497F20e3EA03);
+    IPixelsMap map = IPixelsMap(0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7);
 
     // registration
     constructor(uint16 teamNum, string memory teamName) {
