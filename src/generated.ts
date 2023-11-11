@@ -434,7 +434,8 @@ export const ierc20PermitABI = [
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export const iPixelsMapABI = [
   { type: 'error', inputs: [], name: 'AlreadyRegistered' },
@@ -606,15 +607,18 @@ export const iPixelsMapABI = [
 ] as const
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export const iPixelsMapAddress = {
   11791: '0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7',
   31337: '0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7',
+  11155111: '0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7',
 } as const
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export const iPixelsMapConfig = {
   address: iPixelsMapAddress,
@@ -927,7 +931,8 @@ export const templateStrategyABI = [
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export const xIstABI = [
   {
@@ -1163,15 +1168,18 @@ export const xIstABI = [
 ] as const
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export const xIstAddress = {
   11791: '0x148412086B279215e2F7feC41A912cBcE4B4c37f',
   31337: '0x148412086B279215e2F7feC41A912cBcE4B4c37f',
+  11155111: '0x148412086B279215e2F7feC41A912cBcE4B4c37f',
 } as const
 
 /**
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export const xIstConfig = { address: xIstAddress, abi: xIstABI } as const
 
@@ -2430,7 +2438,8 @@ export function usePrepareIerc20PermitPermit(
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapRead<
   TFunctionName extends string,
@@ -2454,7 +2463,8 @@ export function useIPixelsMapRead<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"addressRegistrar"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapAddressRegistrar<
   TFunctionName extends 'addressRegistrar',
@@ -2479,7 +2489,8 @@ export function useIPixelsMapAddressRegistrar<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"getMultiplePixelData"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapGetMultiplePixelData<
   TFunctionName extends 'getMultiplePixelData',
@@ -2504,7 +2515,8 @@ export function useIPixelsMapGetMultiplePixelData<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"getRangePixelData"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapGetRangePixelData<
   TFunctionName extends 'getRangePixelData',
@@ -2529,7 +2541,8 @@ export function useIPixelsMapGetRangePixelData<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"getSinglePixelData"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapGetSinglePixelData<
   TFunctionName extends 'getSinglePixelData',
@@ -2554,7 +2567,8 @@ export function useIPixelsMapGetSinglePixelData<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"getTeamNames"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapGetTeamNames<
   TFunctionName extends 'getTeamNames',
@@ -2579,7 +2593,8 @@ export function useIPixelsMapGetTeamNames<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"getTeamNumbers"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapGetTeamNumbers<
   TFunctionName extends 'getTeamNumbers',
@@ -2604,7 +2619,8 @@ export function useIPixelsMapGetTeamNumbers<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapWrite<
   TFunctionName extends string,
@@ -2639,7 +2655,8 @@ export function useIPixelsMapWrite<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"placeMines"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapPlaceMines<
   TMode extends WriteContractMode = undefined,
@@ -2675,7 +2692,8 @@ export function useIPixelsMapPlaceMines<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"placePixels"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapPlacePixels<
   TMode extends WriteContractMode = undefined,
@@ -2715,7 +2733,8 @@ export function useIPixelsMapPlacePixels<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"register"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapRegister<
   TMode extends WriteContractMode = undefined,
@@ -2751,7 +2770,8 @@ export function useIPixelsMapRegister<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"resetPixels"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapResetPixels<
   TMode extends WriteContractMode = undefined,
@@ -2791,7 +2811,8 @@ export function useIPixelsMapResetPixels<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"setTeamName"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function useIPixelsMapSetTeamName<
   TMode extends WriteContractMode = undefined,
@@ -2831,7 +2852,8 @@ export function useIPixelsMapSetTeamName<
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function usePrepareIPixelsMapWrite<TFunctionName extends string>(
   config: Omit<
@@ -2852,7 +2874,8 @@ export function usePrepareIPixelsMapWrite<TFunctionName extends string>(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"placeMines"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function usePrepareIPixelsMapPlaceMines(
   config: Omit<
@@ -2874,7 +2897,8 @@ export function usePrepareIPixelsMapPlaceMines(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"placePixels"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function usePrepareIPixelsMapPlacePixels(
   config: Omit<
@@ -2896,7 +2920,8 @@ export function usePrepareIPixelsMapPlacePixels(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"register"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function usePrepareIPixelsMapRegister(
   config: Omit<
@@ -2918,7 +2943,8 @@ export function usePrepareIPixelsMapRegister(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"resetPixels"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function usePrepareIPixelsMapResetPixels(
   config: Omit<
@@ -2940,7 +2966,8 @@ export function usePrepareIPixelsMapResetPixels(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link iPixelsMapABI}__ and `functionName` set to `"setTeamName"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7)
  */
 export function usePrepareIPixelsMapSetTeamName(
   config: Omit<
@@ -3781,7 +3808,8 @@ export function usePrepareTemplateStrategyResetPixels(
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstRead<
   TFunctionName extends string,
@@ -3805,7 +3833,8 @@ export function useXIstRead<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"MAX_MINTS_PER_EPOCH"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstMaxMintsPerEpoch<
   TFunctionName extends 'MAX_MINTS_PER_EPOCH',
@@ -3830,7 +3859,8 @@ export function useXIstMaxMintsPerEpoch<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"MAX_TOTAL_MINTS"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstMaxTotalMints<
   TFunctionName extends 'MAX_TOTAL_MINTS',
@@ -3855,7 +3885,8 @@ export function useXIstMaxTotalMints<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"allowance"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstAllowance<
   TFunctionName extends 'allowance',
@@ -3880,7 +3911,8 @@ export function useXIstAllowance<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"balanceOf"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstBalanceOf<
   TFunctionName extends 'balanceOf',
@@ -3905,7 +3937,8 @@ export function useXIstBalanceOf<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"decimals"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstDecimals<
   TFunctionName extends 'decimals',
@@ -3930,7 +3963,8 @@ export function useXIstDecimals<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"gameEndTime"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstGameEndTime<
   TFunctionName extends 'gameEndTime',
@@ -3955,7 +3989,8 @@ export function useXIstGameEndTime<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"getRemainingMints"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstGetRemainingMints<
   TFunctionName extends 'getRemainingMints',
@@ -3980,7 +4015,8 @@ export function useXIstGetRemainingMints<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"name"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstName<
   TFunctionName extends 'name',
@@ -4005,7 +4041,8 @@ export function useXIstName<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"numMints"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstNumMints<
   TFunctionName extends 'numMints',
@@ -4030,7 +4067,8 @@ export function useXIstNumMints<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"owner"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstOwner<
   TFunctionName extends 'owner',
@@ -4055,7 +4093,8 @@ export function useXIstOwner<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"pixelsMap"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstPixelsMap<
   TFunctionName extends 'pixelsMap',
@@ -4080,7 +4119,8 @@ export function useXIstPixelsMap<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"symbol"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstSymbol<
   TFunctionName extends 'symbol',
@@ -4105,7 +4145,8 @@ export function useXIstSymbol<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"totalSupply"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstTotalSupply<
   TFunctionName extends 'totalSupply',
@@ -4130,7 +4171,8 @@ export function useXIstTotalSupply<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstWrite<
   TFunctionName extends string,
@@ -4162,7 +4204,8 @@ export function useXIstWrite<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"approve"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstApprove<
   TMode extends WriteContractMode = undefined,
@@ -4195,7 +4238,8 @@ export function useXIstApprove<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"decreaseAllowance"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstDecreaseAllowance<
   TMode extends WriteContractMode = undefined,
@@ -4235,7 +4279,8 @@ export function useXIstDecreaseAllowance<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"increaseAllowance"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstIncreaseAllowance<
   TMode extends WriteContractMode = undefined,
@@ -4275,7 +4320,8 @@ export function useXIstIncreaseAllowance<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"mint"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstMint<
   TMode extends WriteContractMode = undefined,
@@ -4308,7 +4354,8 @@ export function useXIstMint<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"setGameEndTime"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstSetGameEndTime<
   TMode extends WriteContractMode = undefined,
@@ -4348,7 +4395,8 @@ export function useXIstSetGameEndTime<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"setPixelsMap"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstSetPixelsMap<
   TMode extends WriteContractMode = undefined,
@@ -4388,7 +4436,8 @@ export function useXIstSetPixelsMap<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"transfer"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstTransfer<
   TMode extends WriteContractMode = undefined,
@@ -4424,7 +4473,8 @@ export function useXIstTransfer<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"transferFrom"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstTransferFrom<
   TMode extends WriteContractMode = undefined,
@@ -4464,7 +4514,8 @@ export function useXIstTransferFrom<
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstWrite<TFunctionName extends string>(
   config: Omit<
@@ -4485,7 +4536,8 @@ export function usePrepareXIstWrite<TFunctionName extends string>(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"approve"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstApprove(
   config: Omit<
@@ -4507,7 +4559,8 @@ export function usePrepareXIstApprove(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"decreaseAllowance"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstDecreaseAllowance(
   config: Omit<
@@ -4529,7 +4582,8 @@ export function usePrepareXIstDecreaseAllowance(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"increaseAllowance"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstIncreaseAllowance(
   config: Omit<
@@ -4551,7 +4605,8 @@ export function usePrepareXIstIncreaseAllowance(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"mint"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstMint(
   config: Omit<
@@ -4573,7 +4628,8 @@ export function usePrepareXIstMint(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"setGameEndTime"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstSetGameEndTime(
   config: Omit<
@@ -4595,7 +4651,8 @@ export function usePrepareXIstSetGameEndTime(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"setPixelsMap"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstSetPixelsMap(
   config: Omit<
@@ -4617,7 +4674,8 @@ export function usePrepareXIstSetPixelsMap(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"transfer"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstTransfer(
   config: Omit<
@@ -4639,7 +4697,8 @@ export function usePrepareXIstTransfer(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link xIstABI}__ and `functionName` set to `"transferFrom"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function usePrepareXIstTransferFrom(
   config: Omit<
@@ -4661,7 +4720,8 @@ export function usePrepareXIstTransferFrom(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link xIstABI}__.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstEvent<TEventName extends string>(
   config: Omit<
@@ -4682,7 +4742,8 @@ export function useXIstEvent<TEventName extends string>(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link xIstABI}__ and `eventName` set to `"Approval"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstApprovalEvent(
   config: Omit<
@@ -4704,7 +4765,8 @@ export function useXIstApprovalEvent(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link xIstABI}__ and `eventName` set to `"Transfer"`.
  *
- *
+ * -
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f)
  */
 export function useXIstTransferEvent(
   config: Omit<

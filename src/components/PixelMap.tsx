@@ -16,7 +16,7 @@ interface Pixel {
     miner: string,
     minerTeamNumber: bigint,
     minerTeamName: string,
-    colorTeamNumber: bigint,
+    colorTeamNumber: number,
     colorTeamName: string,
     numMinerInstancesOverwritten: number,
     numColorInstancesOverwritten: number,
@@ -43,9 +43,9 @@ export function PixelMap() {
         <Typography level="h1" color="primary">CodeClash: Pixel Wars</Typography>
         <Grid container direction="row" justifyContent="space-between" alignItems="baseline" spacing={1}>
             <Countdowns
-                epoch={epochNum}
-                epochMintsRemaining={epochMintsRemaining}
-                totalMintsRemaining={totalMintsRemaining}
+                epoch={(epochNum == BigInt(0)) ? BigInt(-1) : epochNum}
+                epochMintsRemaining={(epochNum == BigInt(0)) ? BigInt(-1) :epochMintsRemaining}
+                totalMintsRemaining={(epochNum == BigInt(0)) ? BigInt(-1) :totalMintsRemaining}
                 endTime={endTime}
             />
             <DrawPixelMap pixelMap={_pixelMap as Pixel[]} isLoading={isLoading}/>
@@ -91,6 +91,15 @@ function fetchAndFilterData(): {
     let { data: teamNames, isLoading: teamNamesLoading } = useIPixelsMapGetTeamNames({args: [uniqueTeamNumbers]});
 
     // finally, map pixels and store as expanded Pixel[]
+    if (gameTimeLoading || mintInfoLoading || mapLoading || teamNumbersLoading || teamNamesLoading) return {
+        pixelMap: [],
+        epochNum: remainingMintEpochInfo === undefined ? BigInt(0) : remainingMintEpochInfo[0],
+        epochMintsRemaining: remainingMintEpochInfo === undefined ? BigInt(0) : remainingMintEpochInfo[1],
+        totalMintsRemaining: remainingMintEpochInfo === undefined ? BigInt(0) : remainingMintEpochInfo[2],
+        endTime: endTime === undefined ? BigInt(0) : endTime,
+        isLoading: false
+    }
+
     return { pixelMap: pixelMap!.map((pixel, index) => {
         const colorTeamName = teamNames![uniqueTeamNumbers.indexOf(pixel.colorTeamNumber)]
 
@@ -150,15 +159,21 @@ function Countdowns(
     return(
         <Grid xs={12} sm={2} lg={2.5}>
             <Typography level="body-lg">Total Mints Left:</Typography>
-            <Typography level="h3" variant='outlined' color='warning'>{totalMintsRemaining.toString()}</Typography>
+            <Typography level="h3" variant='outlined' color='warning'>
+                {totalMintsRemaining.toString() == "-1" ? <Skeleton variant="text" level="h3"></Skeleton> : totalMintsRemaining.toString()}
+            </Typography>
             <Divider />
             <br />
             <Typography level="body-lg">Epoch:</Typography>
-            <Typography level="h3" variant='outlined' color='success'>{epoch.toString()}</Typography>
+            <Typography level="h3" variant='outlined' color='success'>
+                {epoch.toString() == "-1" ? <Skeleton variant="text" level="h3"></Skeleton> : epoch.toString()}
+            </Typography>
             <Divider />
             <br />
             <Typography level="body-lg">Epoch Mints Left:</Typography>
-            <Typography level="h3" variant='outlined' color='warning'>{epochMintsRemaining.toString()}</Typography>
+            <Typography level="h3" variant='outlined' color='warning'>
+                {epochMintsRemaining.toString() == "-1" ? <Skeleton variant="text" level="h3"></Skeleton> : epochMintsRemaining.toString()}
+            </Typography>
             <Divider />
             <br />
             <Typography level="body-lg">Game ends in:</Typography>
@@ -320,7 +335,7 @@ function countOccurrences(arr: Pixel[], countType: number): { miner: string, num
         // countType: 0 = color, 1 = miner team, 2 = miner address
         if (countType == 0) {
             miner = '';
-            number = arr[i].colorTeamNumber;
+            number = BigInt(arr[i].colorTeamNumber);
             name = arr[i].colorTeamName;
             mapKey = number;
         } else if (countType == 1) {
