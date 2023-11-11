@@ -315,8 +315,8 @@ function ScoringTables({pixelMap, isLoading}: { pixelMap: Pixel[], isLoading: bo
 function extractScorers(pixels: Pixel[], countType: number) {
     const teamCounts = countOccurrences(pixels, countType);
     const sortedTeamCounts = teamCounts.sort((a, b) => b.count - a.count);
-    // filter out team number -1 & null address
-    const filteredScorers = sortedTeamCounts.filter((team) => team.miner !== NULL_ADDRESS && team.number != BigInt(-1));
+    // filter out team number -1, 0 & null address
+    const filteredScorers = sortedTeamCounts.filter((team) => team.miner !== NULL_ADDRESS && team.number != BigInt(-1) && team.number != BigInt(0));
     return {scorers: filteredScorers}
 }
 
