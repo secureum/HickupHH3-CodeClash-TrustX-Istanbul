@@ -6,7 +6,7 @@ const PixelsMapAbi = [
   "function addressRegistrar(address user) external view returns (uint8 teamNumber)",
   "function teamNames(uint8 teamNumber) external view returns (string memory teamName)", 
   "function getTeamNumbers(address[] calldata users) external view returns (uint8[] memory teamNumbers)",
-  "function getTeamNames(uint8[] calldata teamNumbers) external view returns (string[] memory teams)",
+  "function getTeamNames(uint16[] calldata teamNumbers) external view returns (string[] memory teams)",
 
   "function getSinglePixelData(uint8 pixel) external view returns (PixelData memory)",
   "function getRangePixelData(uint8 startPixel, uint8 endPixel) external view returns (PixelData[] memory)",
