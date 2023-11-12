@@ -33,17 +33,21 @@ export async function loadPixeles() {
   
     if(teamNumbers.length == 0) return;
 
-    const _names = await $publicClient.readContract({
-        address: contractAddresses.pixelsMap,
-        abi: PixelsMap,
-        functionName: 'getTeamNames',
-        args: [teamNumbers]
-    });
-    
-    const _teamNames = get(teamNames);
+    try {
+      const _names = await $publicClient.readContract({
+          address: contractAddresses.pixelsMap,
+          abi: PixelsMap,
+          functionName: 'getTeamNames',
+          args: [teamNumbers]
+      });
+      
+      const _teamNames = get(teamNames);
 
-    teamNumbers.forEach((e, i) => {
-        _teamNames[e] = _names[i];
-    });
-    teamNames.set(_teamNames);
+      teamNumbers.forEach((e, i) => {
+          _teamNames[e] = _names[i];
+      });
+      teamNames.set(_teamNames);
+    } catch(err) {
+      console.error(err);
+    }
   }

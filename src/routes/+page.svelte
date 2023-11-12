@@ -5,7 +5,7 @@ import {
   fetchData 
 } from './lib/store';
 import {
-  pixels, teamNames, loadPixeles
+  pixels, loadPixeles
 } from './lib/storePixels';
 
 import { parseAbiItem } from 'viem' 
@@ -16,10 +16,14 @@ import { toast } from '@zerodevx/svelte-toast'
 import { Xist, contractAddresses } from './interface'
 import RenderPixelData from './lib/RenderPixelData.svelte';
 import Countdown from './lib/Countdown.svelte';
+  import TablePainters from './lib/TablePainters.svelte';
+  import TableMiners from './lib/TableMiners.svelte';
 
 let selectedPixel = -1;
 let focusPixel = -1;
 let gameEndTime = 0n;
+
+let hoverPixels = [];
 
 let showPixelNumber = false;
 
@@ -31,14 +35,6 @@ $: if(selectedPixel > -1) {
 } else {
   selected = null;
 }
-
-$: topPainters = Object.keys(colors).filter(k => k > 0).map((k) => {
-  return {
-    teamNumber: k,
-    count: $pixels.filter((e) => e && e.colorTeamNumber == k).length,
-    pixels: $pixels.filter((e) => e && e.colorTeamNumber == k).map((e, i) => i).join(', ')
-  }
-}).sort((a,b) => b.count - a.count).slice(0, 10).filter(k => k.count > 0 );
 
 
 onMount(async () => {
@@ -88,8 +84,8 @@ onMount(async () => {
 
 <h1 class="mx-auto text-4xl text-center mt-2 mb-6">Welcome to CodeClash</h1>
 
-<div class="flex flex-row justify-between">
-  <div class="w-1/5 mx-2">
+<div class="flex flex-row max-md:flex-col justify-between">
+  <div class="w-1/5 px-2 mb-10 max-md:w-auto mx-auto ">
     <div class="mt-5 flex justify-between border-b">
       <span>Total Mints Left:</span> 
       {#if $loaded}
@@ -122,7 +118,7 @@ onMount(async () => {
         <div class="animate-pulse rounded mt-0.5 h-5 block bg-slate-200 w-30"></div>
       {/if}
     </div>
-    <div class="hidden">
+    <div class="max-md:hidden">
       <table>
         <thead>
           <tr>
@@ -144,13 +140,13 @@ onMount(async () => {
     </div>
   </div>
 
-  <div class="flex flex-col justify-center w-3/5">
+  <div class="flex flex-col max-md:justify-center mt-10 w-3/5 max-md:w-auto max-md:mx-auto ">
     <div class="pixel-art-container" class:loading={!$loaded}>
       {#each $pixels as e,i}
         <div 
           style="background-color: {(e ? colors[e.color] : '#ffffff')}"
-          class:text-transparent={!showPixelNumber} 
-          class:selected={i == selectedPixel} 
+          class:text-transparent={!showPixelNumber && !hoverPixels.includes(i) } 
+          class:selected={ hoverPixels.length ? hoverPixels.includes(i) : i == selectedPixel } 
         on:mouseenter={() => { if($loaded) focusPixel = i}}
         on:mouseleave={() => { if($loaded) focusPixel = -1}}
         on:click={() => { if($loaded) selectedPixel = i == selectedPixel ? -1 : i}}>{i}</div>    
@@ -165,30 +161,17 @@ onMount(async () => {
       <RenderPixelData {selected} />
     {/if}
   </div>
-  <div class="w-1/5 mx-2">
-      <div class="my-2">
-        <table class="
-        border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm
-        ">
-          <caption class="text-lg">Top Painters</caption>
-          <thead class="bg-slate-50 dark:bg-slate-700">
-            <tr>
-              <th class="border border-slate-300">Team</th>
-              <th class="border border-slate-300">Count</th>
-              <th class="border border-slate-300">Pixels</th>
-            </tr>
-          </thead>
-          <tbody>
-            {#each topPainters as e}
-              <tr>
-                <td class="border border-slate-300"><b>#{e.teamNumber}</b> {$teamNames[e.teamNumber]}</td>
-                <td class="border border-slate-300">{e.count}</td>
-                <td class="border border-slate-300">{e.pixels}</td>
-              </tr>
-            {/each}            
-          </tbody></table></div>
-          <hr />
-          <div class="MuiSheet-root MuiSheet-variantPlain MuiSheet-colorNeutral tables-container css-riejvv-JoySheet-root"><table class="MuiTable-root MuiTable-stickyHeader MuiTable-hoverRow MuiTable-borderAxisXBetween MuiTable-variantPlain MuiTable-colorNeutral MuiTable-sizeSm css-eo04a7-JoyTable-root"><caption>Top Miner Teams</caption><thead><tr><th style="width: 40%;">Team</th><th>Count</th><th style="width: 40%;">Pixels</th></tr></thead><tbody></tbody></table></div><hr class="MuiDivider-root MuiDivider-horizontal css-1n86vx2-JoyDivider-root"><div class="MuiSheet-root MuiSheet-variantPlain MuiSheet-colorNeutral tables-container css-riejvv-JoySheet-root"><table class="MuiTable-root MuiTable-stickyHeader MuiTable-hoverRow MuiTable-borderAxisXBetween MuiTable-variantPlain MuiTable-colorNeutral MuiTable-sizeSm css-eo04a7-JoyTable-root"><caption>Top Miners</caption><thead><tr><th>Address</th><th>Team</th><th>Count</th><th>Pixels</th></tr></thead><tbody></tbody></table></div>
+  <div class="w-1/5 px-2 mb-10 max-md:w-auto mx-auto">
+    <div class="my-4">
+      <TablePainters bind:hoverPixels /> 
+    </div>
+    <hr />
+    <div class="my-4">
+      <TableMiners bind:hoverPixels /> 
+    </div>
+    <hr />
+
+    <div class="MuiSheet-root MuiSheet-variantPlain MuiSheet-colorNeutral tables-container css-riejvv-JoySheet-root"><table class="MuiTable-root MuiTable-stickyHeader MuiTable-hoverRow MuiTable-borderAxisXBetween MuiTable-variantPlain MuiTable-colorNeutral MuiTable-sizeSm css-eo04a7-JoyTable-root"><caption>Top Miners</caption><thead><tr><th>Address</th><th>Team</th><th>Count</th><th>Pixels</th></tr></thead><tbody></tbody></table></div>
     
   </div>
 </div>
@@ -202,18 +185,18 @@ onMount(async () => {
   }
 
   .pixel-art-container {
-    @apply grid grid-cols-8 w-[400px] h-[400px] mx-auto border-2 p-1 touch-none select-none;
+    @apply grid grid-cols-8 w-[500px] h-[500px] mx-auto border-2 p-1 touch-none select-none;
     grid-column-gap:1px;
 		grid-row-gap: 1px;
 	}
   .pixel-art-container > div {
-    @apply items-center flex justify-center cursor-pointer;
+    @apply items-center flex justify-center cursor-pointer outline-transparent;
   }
   .pixel-art-container > div:hover {
     @apply outline-dotted outline-blue-100 z-10;
   }
 
   .pixel-art-container > div.selected {
-    @apply outline outline-blue-100 z-10;
+    @apply outline outline-blue-800 z-10;
   }
 </style>

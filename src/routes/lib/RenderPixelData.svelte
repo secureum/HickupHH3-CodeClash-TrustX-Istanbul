@@ -31,7 +31,7 @@ const address0 = '0x0000000000000000000000000000000000000000';
                 </div>
                 <div class="text-sm">Instances overwritten: {selected.numMinerInstancesOverwritten}</div>
                 <div class="text-sm">Color Instances Overwritten: {selected.numColorInstancesOverwritten}</div>
-                <div class="text-sm">Team Number: {selected.colorTeamNumber}</div>
+                <div class="text-sm">Team Number: {selected.colorTeamNumber == 0 ? 'empty' : '#'+selected.colorTeamNumber}</div>
                 <div class="text-sm">Color: {selected.color}</div>
             </div>
         </div>
