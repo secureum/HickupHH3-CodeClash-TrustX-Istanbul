@@ -7,6 +7,15 @@ Come create an art piece on a 8x8 pixel map canvas for TrustX Istanbul! Register
 - `X_IST`: [`0x148412086B279215e2F7feC41A912cBcE4B4c37f`](https://sepolia.etherscan.io/address/0x148412086B279215e2F7feC41A912cBcE4B4c37f#code)
 - `PixelsMap`: [`0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7`](https://sepolia.etherscan.io/address/0x5D98D16BCd69aEf78474a4591e1f50B6c6C55Ca7#code)
 
+## UI
+https://pixel-wars-ui.vercel.app/
+
+You may build it locally as well, by cloning this repo and running
+```
+yarn install
+yarn dev
+```
+
 ## Telegram Group
 Join the [Telegram Group](https://t.me/TrustXIstCodeClash) for QnAs & discussions!
 
